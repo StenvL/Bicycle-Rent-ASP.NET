@@ -33,6 +33,17 @@ namespace Bicycle_rent
         /// </summary>
         protected override void Preload()
         {
+            WebObjectListView1.DataObjectTypes = new[] { typeof(RentSession) };
+            WebObjectListView1.View = RentSession.Views.TakeBicycleL;
+            WebObjectListView1.Operations.New = false;
+            WebObjectListView1.Operations.Delete = false;
+
+            var ds = DataServiceProvider.DataService;
+            var query = ds.Query<RentSession>(RentSession.Views.TakeBicycleL.Name)
+                .Where(item => item.State.Equals(SessionState.Открыта));
+
+            WebObjectListView1.LimitFunction = LinqToLcs.GetLcs(
+                query.Expression, RentSession.Views.TakeBicycleL).LimitFunction;
         }
 
         /// <summary>
