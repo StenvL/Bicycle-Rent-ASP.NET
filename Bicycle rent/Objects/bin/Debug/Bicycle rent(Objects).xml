@@ -79,6 +79,11 @@
             FinishDate.
             </summary>
         </member>
+        <member name="P:Bicycle_rent.TransportSession.State">
+            <summary>
+            State.
+            </summary>
+        </member>
         <member name="P:Bicycle_rent.TransportSession.Car">
             <summary>
             Transport session.
@@ -150,21 +155,6 @@
             </summary>
         </member>
         <member name="F:Bicycle_rent.Positions.Водитель">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Bicycle_rent.TransportState">
-            <summary>
-            Transport state.
-            </summary>
-        </member>
-        <member name="F:Bicycle_rent.TransportState.Отбыл">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Bicycle_rent.TransportState.Прибыл">
             <summary>
             
             </summary>

@@ -19,13 +19,13 @@ namespace Bicycle_rent
         {
             EditPage = TakeBicycleE.FormPath;
         }
-
+                
         /// <summary>
         /// Путь до формы.
         /// </summary>
         public static string FormPath
         {
-            get { return "~/forms/RentSession/TakeBicycleL.aspx"; }
+            get { return "~/forms/Rent/TakeBicycleL.aspx"; }
         }
 
         /// <summary>
@@ -37,13 +37,12 @@ namespace Bicycle_rent
             WebObjectListView1.View = RentSession.Views.TakeBicycleL;
             WebObjectListView1.Operations.New = false;
             WebObjectListView1.Operations.Delete = false;
-
+            
             var ds = DataServiceProvider.DataService;
             var query = ds.Query<RentSession>(RentSession.Views.TakeBicycleL.Name)
                 .Where(item => item.State.Equals(SessionState.Открыта));
-
             WebObjectListView1.LimitFunction = LinqToLcs.GetLcs(
-                query.Expression, RentSession.Views.TakeBicycleL).LimitFunction;
+            query.Expression, RentSession.Views.TakeBicycleL).LimitFunction;
         }
 
         /// <summary>

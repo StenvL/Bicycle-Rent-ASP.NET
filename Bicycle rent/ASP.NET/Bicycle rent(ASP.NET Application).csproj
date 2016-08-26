@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{00EE64D5-A4A0-4A9A-AD38-56B362A74AAA}</ProjectGuid>
+    <ProjectGuid>{C1AAC869-E56F-4DCD-92AE-4D843371E940}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -84,7 +84,7 @@
       <HintPath>System.Workflow.Runtime</HintPath>
     </Reference>
     <ProjectReference Include="..\Objects\Bicycle rent(Objects).csproj">
-      <Project>{cbc0b889-29b9-409b-8324-6e94e3c1d2bc}</Project>
+      <Project>{1db81fb8-23ba-4ecd-8b5f-1d6fb96caf18}</Project>
       <Name>Bicycle rent(Objects)</Name>
     </ProjectReference>
     <Reference Include="AntiXssLibrary">
@@ -303,9 +303,183 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.sitemap">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="forms\Entities\ClientE.aspx" />
+    <Compile Include="forms\Entities\ClientE.aspx.cs">
+      <DependentUpon>ClientE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\ClientE.aspx.designer.cs">
+      <DependentUpon>ClientE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Entities\EmployeeE.aspx" />
+    <Compile Include="forms\Entities\EmployeeE.aspx.cs">
+      <DependentUpon>EmployeeE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\EmployeeE.aspx.designer.cs">
+      <DependentUpon>EmployeeE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Entities\PointE.aspx" />
+    <Compile Include="forms\Entities\PointE.aspx.cs">
+      <DependentUpon>PointE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\PointE.aspx.designer.cs">
+      <DependentUpon>PointE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Rent\TakeBicycleE.aspx" />
+    <Compile Include="forms\Rent\TakeBicycleE.aspx.cs">
+      <DependentUpon>TakeBicycleE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Rent\TakeBicycleE.aspx.designer.cs">
+      <DependentUpon>TakeBicycleE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Transport\StartTransportE.aspx" />
+    <Compile Include="forms\Transport\StartTransportE.aspx.cs">
+      <DependentUpon>StartTransportE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Transport\StartTransportE.aspx.designer.cs">
+      <DependentUpon>StartTransportE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Entities\PointL.aspx" />
+    <Compile Include="forms\Entities\PointL.aspx.cs">
+      <DependentUpon>PointL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\PointL.aspx.designer.cs">
+      <DependentUpon>PointL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Transport\FinishTransportE.aspx" />
+    <Compile Include="forms\Transport\FinishTransportE.aspx.cs">
+      <DependentUpon>FinishTransportE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Transport\FinishTransportE.aspx.designer.cs">
+      <DependentUpon>FinishTransportE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Entities\EmployeeL.aspx" />
+    <Compile Include="forms\Entities\EmployeeL.aspx.cs">
+      <DependentUpon>EmployeeL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\EmployeeL.aspx.designer.cs">
+      <DependentUpon>EmployeeL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Transport\TransportSessionStringE.aspx" />
+    <Compile Include="forms\Transport\TransportSessionStringE.aspx.cs">
+      <DependentUpon>TransportSessionStringE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Transport\TransportSessionStringE.aspx.designer.cs">
+      <DependentUpon>TransportSessionStringE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Entities\BicycleL.aspx" />
+    <Compile Include="forms\Entities\BicycleL.aspx.cs">
+      <DependentUpon>BicycleL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\BicycleL.aspx.designer.cs">
+      <DependentUpon>BicycleL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Entities\CarE.aspx" />
+    <Compile Include="forms\Entities\CarE.aspx.cs">
+      <DependentUpon>CarE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\CarE.aspx.designer.cs">
+      <DependentUpon>CarE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Transport\TransportSessionE.aspx" />
+    <Compile Include="forms\Transport\TransportSessionE.aspx.cs">
+      <DependentUpon>TransportSessionE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Transport\TransportSessionE.aspx.designer.cs">
+      <DependentUpon>TransportSessionE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Entities\BicycleE.aspx" />
+    <Compile Include="forms\Entities\BicycleE.aspx.cs">
+      <DependentUpon>BicycleE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\BicycleE.aspx.designer.cs">
+      <DependentUpon>BicycleE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Transport\TransportSessionL.aspx" />
+    <Compile Include="forms\Transport\TransportSessionL.aspx.cs">
+      <DependentUpon>TransportSessionL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Transport\TransportSessionL.aspx.designer.cs">
+      <DependentUpon>TransportSessionL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Transport\FinishTransportL.aspx" />
+    <Compile Include="forms\Transport\FinishTransportL.aspx.cs">
+      <DependentUpon>FinishTransportL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Transport\FinishTransportL.aspx.designer.cs">
+      <DependentUpon>FinishTransportL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Web.sitemap" />
+    <Content Include="forms\Entities\ClientL.aspx" />
+    <Compile Include="forms\Entities\ClientL.aspx.cs">
+      <DependentUpon>ClientL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\ClientL.aspx.designer.cs">
+      <DependentUpon>ClientL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Transport\TransportSessionStringL.aspx" />
+    <Compile Include="forms\Transport\TransportSessionStringL.aspx.cs">
+      <DependentUpon>TransportSessionStringL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Transport\TransportSessionStringL.aspx.designer.cs">
+      <DependentUpon>TransportSessionStringL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Rent\RentSessionE.aspx" />
+    <Compile Include="forms\Rent\RentSessionE.aspx.cs">
+      <DependentUpon>RentSessionE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Rent\RentSessionE.aspx.designer.cs">
+      <DependentUpon>RentSessionE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Rent\RentSessionL.aspx" />
+    <Compile Include="forms\Rent\RentSessionL.aspx.cs">
+      <DependentUpon>RentSessionL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Rent\RentSessionL.aspx.designer.cs">
+      <DependentUpon>RentSessionL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Entities\CarL.aspx" />
+    <Compile Include="forms\Entities\CarL.aspx.cs">
+      <DependentUpon>CarL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Entities\CarL.aspx.designer.cs">
+      <DependentUpon>CarL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Rent\GiveBicycleE.aspx" />
+    <Compile Include="forms\Rent\GiveBicycleE.aspx.cs">
+      <DependentUpon>GiveBicycleE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Rent\GiveBicycleE.aspx.designer.cs">
+      <DependentUpon>GiveBicycleE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Rent\TakeBicycleL.aspx" />
+    <Compile Include="forms\Rent\TakeBicycleL.aspx.cs">
+      <DependentUpon>TakeBicycleL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Rent\TakeBicycleL.aspx.designer.cs">
+      <DependentUpon>TakeBicycleL.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="shared\jstreeThemes\apple\bg.jpg" />
     <Content Include="shared\jstreeThemes\apple\d.png" />
@@ -917,182 +1091,6 @@
     <Content Include="Xml\WebControlProvider.xsd" />
     <Content Include="Xml\Bindings\ExampleE.xml" />
     <Content Include="Xml\Sitemaps\Empty.sitemap" />
-    <Content Include="forms\Entities\ClientE.aspx" />
-    <Compile Include="forms\Entities\ClientE.aspx.cs">
-      <DependentUpon>ClientE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\ClientE.aspx.designer.cs">
-      <DependentUpon>ClientE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Entities\EmployeeE.aspx" />
-    <Compile Include="forms\Entities\EmployeeE.aspx.cs">
-      <DependentUpon>EmployeeE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\EmployeeE.aspx.designer.cs">
-      <DependentUpon>EmployeeE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Entities\PointE.aspx" />
-    <Compile Include="forms\Entities\PointE.aspx.cs">
-      <DependentUpon>PointE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\PointE.aspx.designer.cs">
-      <DependentUpon>PointE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Rent\TakeBicycleE.aspx" />
-    <Compile Include="forms\Rent\TakeBicycleE.aspx.cs">
-      <DependentUpon>TakeBicycleE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Rent\TakeBicycleE.aspx.designer.cs">
-      <DependentUpon>TakeBicycleE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Transport\StartTransportE.aspx" />
-    <Compile Include="forms\Transport\StartTransportE.aspx.cs">
-      <DependentUpon>StartTransportE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Transport\StartTransportE.aspx.designer.cs">
-      <DependentUpon>StartTransportE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Entities\PointL.aspx" />
-    <Compile Include="forms\Entities\PointL.aspx.cs">
-      <DependentUpon>PointL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\PointL.aspx.designer.cs">
-      <DependentUpon>PointL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Transport\FinishTransportE.aspx" />
-    <Compile Include="forms\Transport\FinishTransportE.aspx.cs">
-      <DependentUpon>FinishTransportE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Transport\FinishTransportE.aspx.designer.cs">
-      <DependentUpon>FinishTransportE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Entities\EmployeeL.aspx" />
-    <Compile Include="forms\Entities\EmployeeL.aspx.cs">
-      <DependentUpon>EmployeeL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\EmployeeL.aspx.designer.cs">
-      <DependentUpon>EmployeeL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Transport\TransportSessionStringE.aspx" />
-    <Compile Include="forms\Transport\TransportSessionStringE.aspx.cs">
-      <DependentUpon>TransportSessionStringE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Transport\TransportSessionStringE.aspx.designer.cs">
-      <DependentUpon>TransportSessionStringE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Entities\BicycleL.aspx" />
-    <Compile Include="forms\Entities\BicycleL.aspx.cs">
-      <DependentUpon>BicycleL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\BicycleL.aspx.designer.cs">
-      <DependentUpon>BicycleL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Entities\CarE.aspx" />
-    <Compile Include="forms\Entities\CarE.aspx.cs">
-      <DependentUpon>CarE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\CarE.aspx.designer.cs">
-      <DependentUpon>CarE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Transport\TransportSessionE.aspx" />
-    <Compile Include="forms\Transport\TransportSessionE.aspx.cs">
-      <DependentUpon>TransportSessionE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Transport\TransportSessionE.aspx.designer.cs">
-      <DependentUpon>TransportSessionE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Entities\BicycleE.aspx" />
-    <Compile Include="forms\Entities\BicycleE.aspx.cs">
-      <DependentUpon>BicycleE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\BicycleE.aspx.designer.cs">
-      <DependentUpon>BicycleE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Transport\TransportSessionL.aspx" />
-    <Compile Include="forms\Transport\TransportSessionL.aspx.cs">
-      <DependentUpon>TransportSessionL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Transport\TransportSessionL.aspx.designer.cs">
-      <DependentUpon>TransportSessionL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Transport\FinishTransportL.aspx" />
-    <Compile Include="forms\Transport\FinishTransportL.aspx.cs">
-      <DependentUpon>FinishTransportL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Transport\FinishTransportL.aspx.designer.cs">
-      <DependentUpon>FinishTransportL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Entities\ClientL.aspx" />
-    <Compile Include="forms\Entities\ClientL.aspx.cs">
-      <DependentUpon>ClientL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\ClientL.aspx.designer.cs">
-      <DependentUpon>ClientL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Transport\TransportSessionStringL.aspx" />
-    <Compile Include="forms\Transport\TransportSessionStringL.aspx.cs">
-      <DependentUpon>TransportSessionStringL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Transport\TransportSessionStringL.aspx.designer.cs">
-      <DependentUpon>TransportSessionStringL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Rent\RentSessionE.aspx" />
-    <Compile Include="forms\Rent\RentSessionE.aspx.cs">
-      <DependentUpon>RentSessionE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Rent\RentSessionE.aspx.designer.cs">
-      <DependentUpon>RentSessionE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Rent\RentSessionL.aspx" />
-    <Compile Include="forms\Rent\RentSessionL.aspx.cs">
-      <DependentUpon>RentSessionL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Rent\RentSessionL.aspx.designer.cs">
-      <DependentUpon>RentSessionL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Entities\CarL.aspx" />
-    <Compile Include="forms\Entities\CarL.aspx.cs">
-      <DependentUpon>CarL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Entities\CarL.aspx.designer.cs">
-      <DependentUpon>CarL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Rent\GiveBicycleE.aspx" />
-    <Compile Include="forms\Rent\GiveBicycleE.aspx.cs">
-      <DependentUpon>GiveBicycleE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Rent\GiveBicycleE.aspx.designer.cs">
-      <DependentUpon>GiveBicycleE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Rent\TakeBicycleL.aspx" />
-    <Compile Include="forms\Rent\TakeBicycleL.aspx.cs">
-      <DependentUpon>TakeBicycleL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Rent\TakeBicycleL.aspx.designer.cs">
-      <DependentUpon>TakeBicycleL.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

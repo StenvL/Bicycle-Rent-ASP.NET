@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CBC0B889-29B9-409B-8324-6E94E3C1D2BC}</ProjectGuid>
+    <ProjectGuid>{1DB81FB8-23BA-4ECD-8B5F-1D6FB96CAF18}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bicycle_rent</RootNamespace>
@@ -141,9 +141,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Positions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TransportState.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SessionState.cs">

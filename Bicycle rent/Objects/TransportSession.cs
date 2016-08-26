@@ -35,7 +35,8 @@ namespace Bicycle_rent
     [View("FinishTransportL", new string[] {
             "Car.Number as \'Автомобиль\'",
             "Driver.FullName as \'Водитель\'",
-            "StartPoint.Address as \'Точка старта\'"})]
+            "StartPoint.Address as \'Точка старта\'",
+            "State as \'Статус'\'"})]
     [AssociatedDetailViewAttribute("FinishTransportL", "TransportSessionString", "TransportSessionStringL", true, "", "Велосипеды", true, new string[] {
             ""})]
     [View("StartTransportE", new string[] {
@@ -66,7 +67,8 @@ namespace Bicycle_rent
             "StartPoint.Address as \'Начальный пункт\'",
             "StartDate as \'Время выезда\'",
             "EndPoint.Address as \'Конечный пункт\'",
-            "FinishDate as \'Время приезда\'"})]
+            "FinishDate as \'Время приезда\'",
+            "State as \'Статус\'"})]
     [AssociatedDetailViewAttribute("TransportSessionL", "TransportSessionString", "TransportSessionStringL", true, "", "Велосипеды", true, new string[] {
             ""})]
     public class TransportSession : ICSSoft.STORMNET.DataObject
@@ -74,7 +76,9 @@ namespace Bicycle_rent
         
         private System.DateTime fStartDate = System.DateTime.Now;
         
-        private ICSSoft.STORMNET.UserDataTypes.NullableDateTime fFinishDate;
+        private System.DateTime fFinishDate;
+        
+        private Bicycle_rent.SessionState fState;
         
         private Bicycle_rent.Car fCar;
         
@@ -129,14 +133,14 @@ namespace Bicycle_rent
         // *** Start programmer edit section *** (TransportSession.FinishDate CustomAttributes)
 
         // *** End programmer edit section *** (TransportSession.FinishDate CustomAttributes)
-        public virtual ICSSoft.STORMNET.UserDataTypes.NullableDateTime FinishDate
+        public virtual System.DateTime FinishDate
         {
             get
             {
                 // *** Start programmer edit section *** (TransportSession.FinishDate Get start)
 
                 // *** End programmer edit section *** (TransportSession.FinishDate Get start)
-                ICSSoft.STORMNET.UserDataTypes.NullableDateTime result = this.fFinishDate;
+                System.DateTime result = this.fFinishDate;
                 // *** Start programmer edit section *** (TransportSession.FinishDate Get end)
 
                 // *** End programmer edit section *** (TransportSession.FinishDate Get end)
@@ -151,6 +155,38 @@ namespace Bicycle_rent
                 // *** Start programmer edit section *** (TransportSession.FinishDate Set end)
 
                 // *** End programmer edit section *** (TransportSession.FinishDate Set end)
+            }
+        }
+        
+        /// <summary>
+        /// State.
+        /// </summary>
+        // *** Start programmer edit section *** (TransportSession.State CustomAttributes)
+
+        // *** End programmer edit section *** (TransportSession.State CustomAttributes)
+        [NotNull()]
+        public virtual Bicycle_rent.SessionState State
+        {
+            get
+            {
+                // *** Start programmer edit section *** (TransportSession.State Get start)
+
+                // *** End programmer edit section *** (TransportSession.State Get start)
+                Bicycle_rent.SessionState result = this.fState;
+                // *** Start programmer edit section *** (TransportSession.State Get end)
+
+                // *** End programmer edit section *** (TransportSession.State Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (TransportSession.State Set start)
+
+                // *** End programmer edit section *** (TransportSession.State Set start)
+                this.fState = value;
+                // *** Start programmer edit section *** (TransportSession.State Set end)
+
+                // *** End programmer edit section *** (TransportSession.State Set end)
             }
         }
         
