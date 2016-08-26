@@ -108,10 +108,6 @@ namespace Bicycle_rent
             };
             ds.UpdateObject(session);
             Response.Redirect(Request.Path);
-            //ctrlBicycle.SelectedMasterPK = null;
-            //ctrlClient.SelectedMasterPK = null;
-            //ctrlEmployeeGive.SelectedMasterPK = null;
-            //ctrlStartPoint.SelectedMasterPK = null;
         }
     }
 }

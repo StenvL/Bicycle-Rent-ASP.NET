@@ -5,7 +5,8 @@ namespace Bicycle_rent
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Web.Controls;
     using ICSSoft.STORMNET.Web.AjaxControls;
-    
+    using ICSSoft.STORMNET.Business;
+
     public partial class StartTransportE : BaseEditForm<TransportSession>
     {
         /// <summary>
@@ -70,6 +71,51 @@ namespace Bicycle_rent
         protected override DataObject SaveObject()
         {
             return base.SaveObject();
+        }
+
+        private void LoadObjectByPK(SQLDataService ds, DataObject obj, string pk)
+        {
+            obj.SetExistObjectPrimaryKey(pk);
+            ds.LoadObject(obj);
+        }
+        protected override void SaveBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+
+            var emp = new Employee();
+            this.LoadObjectByPK(ds, emp, ctrlDriver.SelectedMasterPK);
+
+            var car = new Car();
+            this.LoadObjectByPK(ds, car, ctrlCar.SelectedMasterPK);
+
+            var point = new Point();
+            this.LoadObjectByPK(ds, point, ctrlStartPoint.SelectedMasterPK);
+
+
+            var session = new TransportSession
+            {
+                StartDate = System.DateTime.Now,
+                Driver = emp,
+                Car = car,
+                StartPoint = point,
+                State = SessionState.Открыта,
+                EndPoint = null,
+                FinishDate = null,
+            };
+            ds.UpdateObject(session);
+
+            
+            foreach (var selectedBicycle in ctrlTransportSessionString.ClientValue.Data)
+            {
+                var transportStr = selectedBicycle.Data[0];
+                var bicycle = new Bicycle();
+                this.LoadObjectByPK(ds, bicycle, transportStr.Value);
+
+                var sessionStr = new TransportSessionString { TransportSession = session, Bicycle = bicycle };
+                ds.UpdateObject(sessionStr);
+            }
+
+            Response.Redirect(Request.Path);
         }
     }
 }

@@ -35,6 +35,7 @@ namespace Bicycle_rent
     [View("FinishTransportL", new string[] {
             "Car.Number as \'Автомобиль\'",
             "Driver.FullName as \'Водитель\'",
+            "StartDate as \'Время выезда\'",
             "StartPoint.Address as \'Точка старта\'",
             "State as \'Статус'\'"})]
     [AssociatedDetailViewAttribute("FinishTransportL", "TransportSessionString", "TransportSessionStringL", true, "", "Велосипеды", true, new string[] {
@@ -75,8 +76,8 @@ namespace Bicycle_rent
     {
         
         private System.DateTime fStartDate = System.DateTime.Now;
-        
-        private System.DateTime fFinishDate;
+
+        private ICSSoft.STORMNET.UserDataTypes.NullableDateTime fFinishDate;
         
         private Bicycle_rent.SessionState fState;
         
@@ -133,14 +134,14 @@ namespace Bicycle_rent
         // *** Start programmer edit section *** (TransportSession.FinishDate CustomAttributes)
 
         // *** End programmer edit section *** (TransportSession.FinishDate CustomAttributes)
-        public virtual System.DateTime FinishDate
+        public virtual ICSSoft.STORMNET.UserDataTypes.NullableDateTime FinishDate
         {
             get
             {
                 // *** Start programmer edit section *** (TransportSession.FinishDate Get start)
 
                 // *** End programmer edit section *** (TransportSession.FinishDate Get start)
-                System.DateTime result = this.fFinishDate;
+                ICSSoft.STORMNET.UserDataTypes.NullableDateTime result = this.fFinishDate;
                 // *** Start programmer edit section *** (TransportSession.FinishDate Get end)
 
                 // *** End programmer edit section *** (TransportSession.FinishDate Get end)
