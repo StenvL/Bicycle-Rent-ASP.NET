@@ -85,7 +85,7 @@ namespace Bicycle_rent
         
         private System.DateTime fStartDate = System.DateTime.Now;
         
-        private System.DateTime fFinishDate;
+        private ICSSoft.STORMNET.UserDataTypes.NullableDateTime fFinishDate;
         
         private double fCost;
         
@@ -148,14 +148,14 @@ namespace Bicycle_rent
         // *** Start programmer edit section *** (RentSession.FinishDate CustomAttributes)
 
         // *** End programmer edit section *** (RentSession.FinishDate CustomAttributes)
-        public virtual System.DateTime FinishDate
+        public virtual ICSSoft.STORMNET.UserDataTypes.NullableDateTime FinishDate
         {
             get
             {
                 // *** Start programmer edit section *** (RentSession.FinishDate Get start)
 
                 // *** End programmer edit section *** (RentSession.FinishDate Get start)
-                System.DateTime result = this.fFinishDate;
+                ICSSoft.STORMNET.UserDataTypes.NullableDateTime result = this.fFinishDate;
                 // *** Start programmer edit section *** (RentSession.FinishDate Get end)
 
                 // *** End programmer edit section *** (RentSession.FinishDate Get end)

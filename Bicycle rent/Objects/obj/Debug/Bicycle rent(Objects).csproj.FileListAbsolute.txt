@@ -67,3 +67,72 @@ E:\Flexberry Projects\CodeGen\Bicycle Rent\Bicycle rent\Objects\bin\Debug\zh-CN\
 E:\Flexberry Projects\CodeGen\Bicycle Rent\Bicycle rent\Objects\obj\Debug\Bicycle rent(Objects).csprojResolveAssemblyReference.cache
 E:\Flexberry Projects\CodeGen\Bicycle Rent\Bicycle rent\Objects\obj\Debug\Bicycle rent(Objects).dll
 E:\Flexberry Projects\CodeGen\Bicycle Rent\Bicycle rent\Objects\obj\Debug\Bicycle rent(Objects).pdb
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Bicycle rent(Objects).xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Bicycle rent(Objects).dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Bicycle rent(Objects).pdb
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ChangesToSqlBTMonitor.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ExternalLangDef.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.Services.CurrentUserService.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.Services.UnityFactory.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.BF.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.DRDataService.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.LINQProvider.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.LockService.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.MSSQLDataService.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.ODBCDataService.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.OracleDataService.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.PostgresDataService.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Collections.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.DataObject.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Drawing.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.FunctionalLanguage.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Tools.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.UserDataTypes.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\log4net.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\LogService.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Microsoft.Practices.Unity.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Mono.Security.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Npgsql.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Npgsql.resources.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Oracle.ManagedDataAccess.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Remotion.Linq.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\log4net.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\LogService.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Microsoft.Practices.Unity.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.Services.UnityFactory.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.Services.CurrentUserService.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Npgsql.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\Remotion.Linq.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ChangesToSqlBTMonitor.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ExternalLangDef.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.BF.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.DRDataService.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.LINQProvider.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.LockService.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.MSSQLDataService.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.ODBCDataService.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.OracleDataService.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Business.PostgresDataService.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Collections.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.DataObject.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Drawing.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.FunctionalLanguage.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.Tools.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ICSSoft.STORMNET.UserDataTypes.xml
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\de\Npgsql.resources.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\es\Npgsql.resources.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\fi\Npgsql.resources.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\fr\Npgsql.resources.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\ja\Npgsql.resources.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\bin\Debug\zh-CN\Npgsql.resources.dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\obj\Debug\Bicycle rent(Objects).csprojResolveAssemblyReference.cache
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\obj\Debug\Bicycle rent(Objects).dll
+E:\Flexberry-Projects\CodeGen\BicycleRent\Bicycle rent\Objects\obj\Debug\Bicycle rent(Objects).pdb
