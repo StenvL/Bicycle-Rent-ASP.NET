@@ -30,14 +30,26 @@ namespace Bicycle_rent
     [Caption("Сессия перевозки")]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("FinishTransportE", new string[] {
-            "EndPoint as \'Точка финиша\'"})]
+            "EndPoint as \'Точка финиша\'",
+            "StartDate",
+            "FinishDate",
+            "State",
+            "Car",
+            "StartPoint",
+            "Driver"}, Hidden=new string[] {
+            "StartDate",
+            "FinishDate",
+            "State",
+            "Car",
+            "StartPoint",
+            "Driver"})]
     [MasterViewDefineAttribute("FinishTransportE", "EndPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
     [View("FinishTransportL", new string[] {
             "Car.Number as \'Автомобиль\'",
             "Driver.FullName as \'Водитель\'",
             "StartDate as \'Время выезда\'",
             "StartPoint.Address as \'Точка старта\'",
-            "State as \'Статус'\'"})]
+            "State as \'Статус\'"})]
     [AssociatedDetailViewAttribute("FinishTransportL", "TransportSessionString", "TransportSessionStringL", true, "", "Велосипеды", true, new string[] {
             ""})]
     [View("StartTransportE", new string[] {
@@ -76,7 +88,7 @@ namespace Bicycle_rent
     {
         
         private System.DateTime fStartDate = System.DateTime.Now;
-
+        
         private ICSSoft.STORMNET.UserDataTypes.NullableDateTime fFinishDate;
         
         private Bicycle_rent.SessionState fState;

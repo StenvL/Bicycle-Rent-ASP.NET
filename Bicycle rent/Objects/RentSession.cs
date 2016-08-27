@@ -71,7 +71,25 @@ namespace Bicycle_rent
     [View("TakeBicycleE", new string[] {
             "EmployeeTake as \'Принял\'",
             "EndPoint as \'Точка сдачи\'",
-            "Fine as \'Штраф\'"})]
+            "Fine as \'Штраф\'",
+            "StartDate",
+            "FinishDate",
+            "Cost",
+            "State",
+            "Client",
+            "StartPoint",
+            "EmployeeGive",
+            "Bicycle",
+            "Bicycle.CostPerMinute"}, Hidden=new string[] {
+            "StartDate",
+            "FinishDate",
+            "Cost",
+            "State",
+            "Client",
+            "StartPoint",
+            "EmployeeGive",
+            "Bicycle",
+            "Bicycle.CostPerMinute"})]
     [MasterViewDefineAttribute("TakeBicycleE", "EmployeeTake", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "FullName")]
     [MasterViewDefineAttribute("TakeBicycleE", "EndPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
     [View("TakeBicycleL", new string[] {

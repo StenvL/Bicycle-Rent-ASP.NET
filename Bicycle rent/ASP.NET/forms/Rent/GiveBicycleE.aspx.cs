@@ -72,42 +72,5 @@ namespace Bicycle_rent
         {
             return base.SaveObject();
         }
-
-        private void LoadObjectByPK(SQLDataService ds, DataObject obj, string pk)
-        {
-            obj.SetExistObjectPrimaryKey(pk);
-            ds.LoadObject(obj);
-        }
-        protected override void SaveBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-
-            var bicycle = new Bicycle();
-            this.LoadObjectByPK(ds, bicycle, ctrlBicycle.SelectedMasterPK);
-
-            var client = new Client();
-            this.LoadObjectByPK(ds, client, ctrlClient.SelectedMasterPK);
-
-            var emp = new Employee();
-            this.LoadObjectByPK(ds, emp, ctrlEmployeeGive.SelectedMasterPK);
-
-            var point = new Point();
-            this.LoadObjectByPK(ds, point, ctrlStartPoint.SelectedMasterPK);
-
-            var session = new RentSession
-            {
-                StartDate = System.DateTime.Now,
-                Bicycle = bicycle,
-                Client = client,
-                EmployeeGive = emp,
-                StartPoint = point,
-                State = SessionState.Открыта,
-                EndPoint = null,
-                FinishDate = null,
-                EmployeeTake = null
-            };
-            ds.UpdateObject(session);
-            Response.Redirect(Request.Path);
-        }
     }
 }

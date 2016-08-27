@@ -30,22 +30,23 @@ namespace Bicycle_rent
     [Caption("Велосипед")]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("BicycleE", new string[] {
-            "Number",
+            "Number as \'Номер\'",
             "Model as \'Модель\'",
             "Description as \'Описание\'",
             "CostPerMinute as \'Стоимость/мин\'",
             "Type as \'Тип\'",
             "State as \'Состояние\'",
-            "CurPoint as \'Пункт\'"})]
+            "CurPoint as \'Точка\'"})]
     [MasterViewDefineAttribute("BicycleE", "CurPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
     [View("BicycleL", new string[] {
-            "Number",
+            "Number as \'Номер\'",
             "Model as \'Модель\'",
             "Description as \'Описание\'",
             "CostPerMinute as \'Стоимость/мин\'",
             "Type as \'Тип\'",
             "State as \'Состояние\'",
-            "IsFree as \'Свободен\'"})]
+            "IsFree as \'Свободен\'",
+            "CurPoint.Address as \'Точка\'"})]
     public class Bicycle : ICSSoft.STORMNET.DataObject
     {
         

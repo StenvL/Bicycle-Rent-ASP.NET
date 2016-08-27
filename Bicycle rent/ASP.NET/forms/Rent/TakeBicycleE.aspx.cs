@@ -4,8 +4,8 @@ namespace Bicycle_rent
 {
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Web.Controls;
-    using ICSSoft.STORMNET.Web.AjaxControls;
-    
+    using ICSSoft.STORMNET.Business;
+
     public partial class TakeBicycleE : BaseEditForm<RentSession>
     {
         /// <summary>
@@ -70,6 +70,27 @@ namespace Bicycle_rent
         protected override DataObject SaveObject()
         {
             return base.SaveObject();
+        }
+
+        private void CloseSession()
+        {
+            var session = this.DataObject;
+            session.FinishDate = ICSSoft.STORMNET.UserDataTypes.NullableDateTime.Now;
+            session.Cost = System.Math.Round((System.DateTime.Parse(session.FinishDate.ToString()) - session.StartDate)
+                .TotalMinutes) * session.Bicycle.CostPerMinute;
+            session.State = SessionState.Закрыта;
+
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            ds.UpdateObject(session);
+        }
+        protected override void SaveBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            this.CloseSession();
+        }
+        protected override void SaveAndCloseBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            this.CloseSession();
+            Response.Redirect("/forms/Rent/TakeBicycleL.aspx");
         }
     }
 }
