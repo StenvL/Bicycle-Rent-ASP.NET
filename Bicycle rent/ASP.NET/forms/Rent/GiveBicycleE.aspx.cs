@@ -6,6 +6,8 @@ namespace Bicycle_rent
     using ICSSoft.STORMNET.Web.Controls;
     using ICSSoft.STORMNET.Web.AjaxControls;
     using ICSSoft.STORMNET.Business;
+    using ICSSoft.STORMNET.Business.LINQProvider;
+    using System.Linq;
 
     public partial class GiveBicycleE : BaseEditForm<RentSession>
     {
@@ -37,6 +39,11 @@ namespace Bicycle_rent
         /// </summary>
         protected override void PreApplyToControls()
         {
+            var ds = DataServiceProvider.DataService;
+            var query = ds.Query<Bicycle>(Bicycle.Views.BicycleL.Name)
+                .Where(item => item.IsFree && item.State.Equals(BicycleState.Исправен));
+            ctrlBicycle.LimitFunction = LinqToLcs.GetLcs(
+                query.Expression, Bicycle.Views.BicycleL).LimitFunction;
         }
 
         /// <summary>
@@ -71,6 +78,22 @@ namespace Bicycle_rent
         protected override DataObject SaveObject()
         {
             return base.SaveObject();
+        }
+
+        protected override void SaveBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            base.SaveBtn_Click(sender, e);
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+
+            var bicycle = new Bicycle();
+            bicycle.SetExistObjectPrimaryKey(this.DataObject.Bicycle.__PrimaryKey);
+            ds.LoadObject(bicycle);
+
+            bicycle.CurPoint = null;
+            bicycle.IsFree = false;
+            ds.UpdateObject(bicycle);
+
+            Response.Redirect("/");
         }
     }
 }

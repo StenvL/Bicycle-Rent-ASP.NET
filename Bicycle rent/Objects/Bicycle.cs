@@ -36,6 +36,7 @@ namespace Bicycle_rent
             "CostPerMinute as \'Стоимость/мин\'",
             "Type as \'Тип\'",
             "State as \'Состояние\'",
+            "IsFree as \'Свободен\'",
             "CurPoint as \'Точка\'"})]
     [MasterViewDefineAttribute("BicycleE", "CurPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
     [View("BicycleL", new string[] {

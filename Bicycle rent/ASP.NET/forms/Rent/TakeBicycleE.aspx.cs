@@ -74,14 +74,22 @@ namespace Bicycle_rent
 
         private void CloseSession()
         {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+
             var session = this.DataObject;
             session.FinishDate = ICSSoft.STORMNET.UserDataTypes.NullableDateTime.Now;
             session.Cost = System.Math.Round((System.DateTime.Parse(session.FinishDate.ToString()) - session.StartDate)
                 .TotalMinutes) * session.Bicycle.CostPerMinute;
             session.State = SessionState.Закрыта;
 
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-            ds.UpdateObject(session);
+            var bicycle = new Bicycle();
+            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
+            ds.LoadObject(bicycle);
+            bicycle.CurPoint = session.EndPoint;
+            bicycle.IsFree = true;
+
+            var updObjs = new DataObject[] { session, bicycle };
+            ds.UpdateObjects(ref updObjs);
         }
         protected override void SaveBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
