@@ -35,7 +35,9 @@ namespace Bicycle_rent
     [View("TransportSessionStringL", new string[] {
             "Bicycle.Number",
             "Bicycle.Model",
-            "Bicycle.State"})]
+            "Bicycle.State",
+            "Bicycle"}, Hidden=new string[] {
+            "Bicycle"})]
     public class TransportSessionString : ICSSoft.STORMNET.DataObject
     {
         

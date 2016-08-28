@@ -13,8 +13,9 @@ namespace Bicycle_rent
     using System;
     using System.Xml;
     using ICSSoft.STORMNET;
-    
-    
+    using ICSSoft.STORMNET.Business;
+
+
     // *** Start programmer edit section *** (Using statements)
 
     // *** End programmer edit section *** (Using statements)
@@ -43,6 +44,8 @@ namespace Bicycle_rent
             "Car",
             "StartPoint",
             "Driver"})]
+    [AssociatedDetailViewAttribute("FinishTransportE", "TransportSessionString", "TransportSessionStringE", true, "", "Велосипеды", false, new string[] {
+            ""})]
     [MasterViewDefineAttribute("FinishTransportE", "EndPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
     [View("FinishTransportL", new string[] {
             "Car.Number as \'Автомобиль\'",
@@ -372,7 +375,45 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (TransportSession.TransportSessionString Set end)
             }
         }
-        
+
+        /// <summary>
+        /// Обновляет состояние велосипедов после открытия сессии.
+        /// </summary>
+        public static void UpdateBicyclesAfterSessionOpen(DataObject[] details)
+        {
+            foreach (var d in details)
+            {
+                var ds = (SQLDataService)DataServiceProvider.DataService;
+                var bicycle = new Bicycle();
+                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
+                ds.LoadObject(bicycle);
+                bicycle.CurPoint = null;
+                bicycle.IsFree = false;
+                ds.UpdateObject(bicycle);
+            }
+        }
+
+        /// <summary>
+        /// Закрывает сессию.
+        /// </summary>
+        public static void CloseSession(TransportSession session)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            session.FinishDate = ICSSoft.STORMNET.UserDataTypes.NullableDateTime.Now;
+            session.State = SessionState.Закрыта;
+            ds.UpdateObject(session);
+
+            var details = session.TransportSessionString.GetAllObjects();
+            foreach (var d in details)
+            {
+                var bicycle = new Bicycle();
+                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
+                ds.LoadObject(bicycle);
+                bicycle.CurPoint = session.EndPoint;
+                bicycle.IsFree = true;
+                ds.UpdateObject(bicycle);
+            }
+        }
         /// <summary>
         /// Class views container.
         /// </summary>

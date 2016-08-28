@@ -32,6 +32,21 @@ namespace Bicycle_rent
         /// </summary>
         protected override void Preload()
         {
+            ctrlEmployeeGive.MasterViewName = Employee.Views.EmployeeL.Name;
+            ctrlClient.MasterViewName = Client.Views.ClientL.Name;
+
+            // Выдать можно только исправные, незанятые велосипеды.
+            var ds = DataServiceProvider.DataService;
+            var queryBicycle = ds.Query<Bicycle>(Bicycle.Views.BicycleL.Name)
+                .Where(item => item.IsFree && item.State.Equals(BicycleState.Исправен));
+            ctrlBicycle.LimitFunction = LinqToLcs.GetLcs(
+                queryBicycle.Expression, Bicycle.Views.BicycleL).LimitFunction;
+
+            // Может выдавать только менеджер или директор.
+            var queryEmp = ds.Query<Employee>(Employee.Views.EmployeeL.Name)
+                .Where(item => item.Position.Equals(Positions.Директор) || item.Position.Equals(Positions.Менеджер));
+            ctrlEmployeeGive.LimitFunction = LinqToLcs.GetLcs(
+                queryEmp.Expression, Employee.Views.EmployeeL).LimitFunction;
         }
 
         /// <summary>
@@ -39,11 +54,6 @@ namespace Bicycle_rent
         /// </summary>
         protected override void PreApplyToControls()
         {
-            var ds = DataServiceProvider.DataService;
-            var query = ds.Query<Bicycle>(Bicycle.Views.BicycleL.Name)
-                .Where(item => item.IsFree && item.State.Equals(BicycleState.Исправен));
-            ctrlBicycle.LimitFunction = LinqToLcs.GetLcs(
-                query.Expression, Bicycle.Views.BicycleL).LimitFunction;
         }
 
         /// <summary>
@@ -83,16 +93,7 @@ namespace Bicycle_rent
         protected override void SaveBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
             base.SaveBtn_Click(sender, e);
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-
-            var bicycle = new Bicycle();
-            bicycle.SetExistObjectPrimaryKey(this.DataObject.Bicycle.__PrimaryKey);
-            ds.LoadObject(bicycle);
-
-            bicycle.CurPoint = null;
-            bicycle.IsFree = false;
-            ds.UpdateObject(bicycle);
-
+            RentSession.UpdateBicycleAfterSessionOpen(this.DataObject);
             Response.Redirect("/");
         }
     }

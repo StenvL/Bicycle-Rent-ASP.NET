@@ -109,6 +109,16 @@
             Transport session.
             </summary>
         </member>
+        <member name="M:Bicycle_rent.TransportSession.UpdateBicyclesAfterSessionOpen(ICSSoft.STORMNET.DataObject[])">
+            <summary>
+            Обновляет состояние велосипедов после открытия сессии.
+            </summary>
+        </member>
+        <member name="M:Bicycle_rent.TransportSession.CloseSession(Bicycle_rent.TransportSession)">
+            <summary>
+            Закрывает сессию.
+            </summary>
+        </member>
         <member name="T:Bicycle_rent.TransportSession.Views">
             <summary>
             Class views container.
@@ -453,6 +463,16 @@
         <member name="P:Bicycle_rent.RentSession.EmployeeTake">
             <summary>
             Rent session.
+            </summary>
+        </member>
+        <member name="M:Bicycle_rent.RentSession.UpdateBicycleAfterSessionOpen(Bicycle_rent.RentSession)">
+            <summary>
+            Обновляет состояние велосипедов после открытия сессии.
+            </summary>
+        </member>
+        <member name="M:Bicycle_rent.RentSession.CloseSession(Bicycle_rent.RentSession)">
+            <summary>
+            Закрывает сессию.
             </summary>
         </member>
         <member name="T:Bicycle_rent.RentSession.Views">

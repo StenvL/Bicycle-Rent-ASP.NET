@@ -13,8 +13,9 @@ namespace Bicycle_rent
     using System;
     using System.Xml;
     using ICSSoft.STORMNET;
-    
-    
+    using ICSSoft.STORMNET.Business;
+
+
     // *** Start programmer edit section *** (Using statements)
 
     // *** End programmer edit section *** (Using statements)
@@ -486,7 +487,46 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.EmployeeTake Set end)
             }
         }
-        
+
+
+        /// <summary>
+        /// Обновляет состояние велосипедов после открытия сессии.
+        /// </summary>
+        public static void UpdateBicycleAfterSessionOpen(RentSession session)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            
+            var bicycle = new Bicycle();
+            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
+            ds.LoadObject(bicycle);
+            
+            bicycle.CurPoint = null;
+            bicycle.IsFree = false;
+            ds.UpdateObject(bicycle);
+        }
+
+        /// <summary>
+        /// Закрывает сессию.
+        /// </summary>
+        public static void CloseSession(RentSession session)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+
+            session.FinishDate = ICSSoft.STORMNET.UserDataTypes.NullableDateTime.Now;
+            session.Cost = System.Math.Round((System.DateTime.Parse(session.FinishDate.ToString()) - session.StartDate)
+                .TotalMinutes) * session.Bicycle.CostPerMinute;
+            session.State = SessionState.Закрыта; session.State = SessionState.Закрыта;
+
+            var bicycle = new Bicycle();
+            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
+            ds.LoadObject(bicycle);
+            bicycle.CurPoint = session.EndPoint;
+            bicycle.IsFree = true;
+
+            var updObjs = new DataObject[] { session, bicycle };
+            ds.UpdateObjects(ref updObjs);
+        }
+
         /// <summary>
         /// Class views container.
         /// </summary>

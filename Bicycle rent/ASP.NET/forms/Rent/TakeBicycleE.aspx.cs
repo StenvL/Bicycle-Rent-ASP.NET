@@ -5,6 +5,9 @@ namespace Bicycle_rent
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Web.Controls;
     using ICSSoft.STORMNET.Business;
+    using ICSSoft.STORMNET.Web.AjaxControls;
+    using ICSSoft.STORMNET.Business.LINQProvider;
+    using System.Linq;
 
     public partial class TakeBicycleE : BaseEditForm<RentSession>
     {
@@ -29,6 +32,15 @@ namespace Bicycle_rent
         /// </summary>
         protected override void Preload()
         {
+            ctrlEmployeeTake.MasterViewName = Employee.Views.EmployeeL.Name;
+
+            // Забрать велосипед может только директор или менеджер.
+            var ds = DataServiceProvider.DataService;
+            var queryEmp = ds.Query<Employee>(Employee.Views.EmployeeL.Name)
+                .Where(item => item.Position.Equals(Positions.Директор) || item.Position.Equals(Positions.Менеджер));
+            ctrlEmployeeTake.LimitFunction = LinqToLcs.GetLcs(
+                queryEmp.Expression, Employee.Views.EmployeeL).LimitFunction;
+
         }
 
         /// <summary>
@@ -72,33 +84,30 @@ namespace Bicycle_rent
             return base.SaveObject();
         }
 
-        private void CloseSession()
-        {
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-
-            var session = this.DataObject;
-            session.FinishDate = ICSSoft.STORMNET.UserDataTypes.NullableDateTime.Now;
-            session.Cost = System.Math.Round((System.DateTime.Parse(session.FinishDate.ToString()) - session.StartDate)
-                .TotalMinutes) * session.Bicycle.CostPerMinute;
-            session.State = SessionState.Закрыта;
-
-            var bicycle = new Bicycle();
-            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
-            ds.LoadObject(bicycle);
-            bicycle.CurPoint = session.EndPoint;
-            bicycle.IsFree = true;
-
-            var updObjs = new DataObject[] { session, bicycle };
-            ds.UpdateObjects(ref updObjs);
-        }
         protected override void SaveBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
-            this.CloseSession();
+            if (this.DataObject.EmployeeTake != null &&
+                this.DataObject.EndPoint != null)
+            {
+                RentSession.CloseSession(this.DataObject);
+            }
+            else
+            {
+                WebMessageBox.Show("Не все значения выбраны.");
+            }
         }
         protected override void SaveAndCloseBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
-            this.CloseSession();
-            Response.Redirect("/forms/Rent/TakeBicycleL.aspx");
+            if (this.DataObject.EmployeeTake != null &&
+                this.DataObject.EndPoint != null)
+            {
+                RentSession.CloseSession(this.DataObject);
+                Response.Redirect("/forms/Rent/TakeBicycleL.aspx");
+            }
+            else
+            {
+                WebMessageBox.Show("Не все значения выбраны.");
+            }
         }
     }
 }

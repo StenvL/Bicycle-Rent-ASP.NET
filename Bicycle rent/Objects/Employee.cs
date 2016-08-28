@@ -30,12 +30,12 @@ namespace Bicycle_rent
     [Caption("Сотрудник")]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("EmployeeE", new string[] {
-            "Position as \'Должность\'",
             "FullName as \'ФИО\'",
+            "Position as \'Должность\'",
             "Gender as \'Пол\'"})]
     [View("EmployeeL", new string[] {
-            "Position as \'Должность\'",
             "FullName as \'ФИО\'",
+            "Position as \'Должность\'",
             "Gender as \'Пол\'"})]
     public class Employee : Bicycle_rent.Human
     {
