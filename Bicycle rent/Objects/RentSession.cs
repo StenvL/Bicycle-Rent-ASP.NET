@@ -11,7 +11,6 @@
 namespace Bicycle_rent
 {
     using System;
-    using System.Xml;
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Business;
 
@@ -132,6 +131,45 @@ namespace Bicycle_rent
         private Bicycle_rent.Employee fEmployeeGive;
 
         // *** Start programmer edit section *** (RentSession CustomMembers)
+
+        /// <summary>
+        /// Обновляет состояние велосипедов после открытия сессии.
+        /// </summary>
+        public static void UpdateBicycleAfterSessionOpen(RentSession session)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+
+            var bicycle = new Bicycle();
+            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
+            ds.LoadObject(bicycle);
+
+            bicycle.CurPoint = null;
+            bicycle.IsFree = false;
+            ds.UpdateObject(bicycle);
+        }
+
+        /// <summary>
+        /// Закрывает сессию.
+        /// </summary>
+        public static void CloseSession(RentSession session)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+
+            session.FinishDate = DateTime.Now;
+            session.Cost = System.Math.Round((session.FinishDate.Value - session.StartDate)
+                .TotalMinutes) * session.Bicycle.CostPerMinute;
+            session.SessionState = SessionState.Закрыта;
+
+            var bicycle = new Bicycle();
+            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
+            ds.LoadObject(bicycle);
+            bicycle.State = session.FinalBicycleState;
+            bicycle.CurPoint = session.EndPoint;
+            bicycle.IsFree = true;
+
+            var updObjs = new DataObject[] { session, bicycle };
+            ds.UpdateObjects(ref updObjs);
+        }
 
         // *** End programmer edit section *** (RentSession CustomMembers)
 
@@ -523,45 +561,6 @@ namespace Bicycle_rent
 
                 // *** End programmer edit section *** (RentSession.EmployeeGive Set end)
             }
-        }
-
-        /// <summary>
-        /// Обновляет состояние велосипедов после открытия сессии.
-        /// </summary>
-        public static void UpdateBicycleAfterSessionOpen(RentSession session)
-        {
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-            
-            var bicycle = new Bicycle();
-            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
-            ds.LoadObject(bicycle);
-            
-            bicycle.CurPoint = null;
-            bicycle.IsFree = false;
-            ds.UpdateObject(bicycle);
-        }
-
-        /// <summary>
-        /// Закрывает сессию.
-        /// </summary>
-        public static void CloseSession(RentSession session)
-        {
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-
-            session.FinishDate = DateTime.Now;
-            session.Cost = System.Math.Round((session.FinishDate.Value - session.StartDate)
-                .TotalMinutes) * session.Bicycle.CostPerMinute;
-            session.SessionState = SessionState.Закрыта;
-
-            var bicycle = new Bicycle();
-            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
-            ds.LoadObject(bicycle);
-            bicycle.State = session.FinalBicycleState;
-            bicycle.CurPoint = session.EndPoint;
-            bicycle.IsFree = true;
-
-            var updObjs = new DataObject[] { session, bicycle };
-            ds.UpdateObjects(ref updObjs);
         }
 
         /// <summary>

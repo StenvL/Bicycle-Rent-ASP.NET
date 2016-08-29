@@ -105,12 +105,51 @@ namespace Bicycle_rent
         private Bicycle_rent.Point fEndPoint;
         
         private Bicycle_rent.DetailArrayOfTransportSessionString fTransportSessionString;
-        
+
         // *** Start programmer edit section *** (TransportSession CustomMembers)
+
+        /// <summary>
+        /// Обновляет состояние велосипедов после открытия сессии.
+        /// </summary>
+        public static void UpdateBicyclesAfterSessionOpen(DataObject[] details)
+        {
+            foreach (var d in details)
+            {
+                var ds = (SQLDataService)DataServiceProvider.DataService;
+                var bicycle = new Bicycle();
+                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
+                ds.LoadObject(bicycle);
+                bicycle.CurPoint = null;
+                bicycle.IsFree = false;
+                ds.UpdateObject(bicycle);
+            }
+        }
+
+        /// <summary>
+        /// Закрывает сессию.
+        /// </summary>
+        public static void CloseSession(TransportSession session)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            session.FinishDate = DateTime.Now;
+            session.State = SessionState.Закрыта;
+            ds.UpdateObject(session);
+
+            var details = session.TransportSessionString.GetAllObjects();
+            foreach (var d in details)
+            {
+                var bicycle = new Bicycle();
+                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
+                ds.LoadObject(bicycle);
+                bicycle.CurPoint = session.EndPoint;
+                bicycle.IsFree = true;
+                ds.UpdateObject(bicycle);
+            }
+        }
 
         // *** End programmer edit section *** (TransportSession CustomMembers)
 
-        
+
         /// <summary>
         /// StartDate.
         /// </summary>
@@ -376,44 +415,6 @@ namespace Bicycle_rent
             }
         }
 
-        /// <summary>
-        /// Обновляет состояние велосипедов после открытия сессии.
-        /// </summary>
-        public static void UpdateBicyclesAfterSessionOpen(DataObject[] details)
-        {
-            foreach (var d in details)
-            {
-                var ds = (SQLDataService)DataServiceProvider.DataService;
-                var bicycle = new Bicycle();
-                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
-                ds.LoadObject(bicycle);
-                bicycle.CurPoint = null;
-                bicycle.IsFree = false;
-                ds.UpdateObject(bicycle);
-            }
-        }
-
-        /// <summary>
-        /// Закрывает сессию.
-        /// </summary>
-        public static void CloseSession(TransportSession session)
-        {
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-            session.FinishDate = DateTime.Now;
-            session.State = SessionState.Закрыта;
-            ds.UpdateObject(session);
-
-            var details = session.TransportSessionString.GetAllObjects();
-            foreach (var d in details)
-            {
-                var bicycle = new Bicycle();
-                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
-                ds.LoadObject(bicycle);
-                bicycle.CurPoint = session.EndPoint;
-                bicycle.IsFree = true;
-                ds.UpdateObject(bicycle);
-            }
-        }
         /// <summary>
         /// Class views container.
         /// </summary>
