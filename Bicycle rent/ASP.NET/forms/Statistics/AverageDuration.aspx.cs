@@ -9,6 +9,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using ICSSoft.STORMNET.Business;
+using ICSSoft.STORMNET.Business.LINQProvider;
+using System.Linq;
+using ICSSoft.STORMNET.Web.AjaxControls;
 
 namespace Bicycle_rent
 {
@@ -16,7 +20,43 @@ namespace Bicycle_rent
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ctrlBicycle.MasterTypeName = typeof(Bicycle).AssemblyQualifiedName;
+            ctrlBicycle.MasterViewName = Bicycle.Views.BicycleL.Name;
+            ctrlBicycle.PropertyToShow = "Number";
+        }
 
+        protected void btnCalcResult_Click(object sender, EventArgs e)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            if (ctrlBicycle.SelectedMasterPK != "")
+            {
+                var bicycle = new Bicycle();
+                bicycle.SetExistObjectPrimaryKey(ctrlBicycle.SelectedMasterPK);
+                ds.LoadObject(bicycle);
+
+                var sessions = ds.Query<RentSession>(RentSession.Views.RentSessionE.Name)
+                    .Where(item => item.Bicycle == bicycle);
+
+                if (sessions.Count() != 0)
+                {
+                    var counter = DateTime.MinValue;
+                    foreach (var session in sessions)
+                    {
+                        counter += (System.DateTime.Parse(session.FinishDate.ToString()) - session.StartDate);
+                    }
+
+                    lblResult.Text =
+                        $"Средняя продолжительность проката: {new DateTime((counter.Ticks / sessions.Count())).ToLongTimeString() }.";
+                }
+                else
+                {
+                    lblResult.Text = "Выбранный велосипед не брали на прокат.";
+                }
+            }
+            else
+            {
+                WebMessageBox.Show("Выберите велосипед.");
+            }
         }
     }
 }

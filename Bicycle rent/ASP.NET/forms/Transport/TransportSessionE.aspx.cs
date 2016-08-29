@@ -29,6 +29,8 @@ namespace Bicycle_rent
         /// </summary>
         protected override void Preload()
         {
+            ctrlStartDate.OnlyDate = false;
+            ctrlFinishDate.OnlyDate = false;
         }
 
         /// <summary>

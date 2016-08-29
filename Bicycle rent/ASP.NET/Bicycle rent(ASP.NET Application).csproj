@@ -335,7 +335,47 @@
     <Compile Include="forms\Rent\TakeBicycleE.aspx.designer.cs">
       <DependentUpon>TakeBicycleE.aspx</DependentUpon>
     </Compile>
+    <Content Include="forms\Statistics\AverageDuration.aspx" />
+    <Content Include="forms\Statistics\BicyclePopularity.aspx" />
+    <Content Include="forms\Statistics\BrokenBicycles.aspx" />
+    <Content Include="forms\Statistics\PointsProfit.aspx" />
+    <Content Include="forms\Statistics\TransportedBicyclesCount.aspx" />
     <Content Include="forms\Transport\StartTransportE.aspx" />
+    <Compile Include="forms\Statistics\AverageDuration.aspx.cs">
+      <DependentUpon>AverageDuration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Statistics\AverageDuration.aspx.designer.cs">
+      <DependentUpon>AverageDuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Statistics\BicyclePopularity.aspx.cs">
+      <DependentUpon>BicyclePopularity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Statistics\BicyclePopularity.aspx.designer.cs">
+      <DependentUpon>BicyclePopularity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Statistics\BrokenBicycles.aspx.cs">
+      <DependentUpon>BrokenBicycles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Statistics\BrokenBicycles.aspx.designer.cs">
+      <DependentUpon>BrokenBicycles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Statistics\PointsProfit.aspx.cs">
+      <DependentUpon>PointsProfit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Statistics\PointsProfit.aspx.designer.cs">
+      <DependentUpon>PointsProfit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Statistics\TransportedBicyclesCount.aspx.cs">
+      <DependentUpon>TransportedBicyclesCount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Statistics\TransportedBicyclesCount.aspx.designer.cs">
+      <DependentUpon>TransportedBicyclesCount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forms\Transport\StartTransportE.aspx.cs">
       <DependentUpon>StartTransportE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
