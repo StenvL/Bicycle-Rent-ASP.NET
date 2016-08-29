@@ -104,7 +104,7 @@ namespace Bicycle_rent
         private Bicycle_rent.Employee fDriver;
         
         private Bicycle_rent.DetailArrayOfTransportSessionString fTransportSessionString;
-        
+
         // *** Start programmer edit section *** (TransportSession CustomMembers)
         /// <summary>
         /// Обновляет состояние велосипедов после открытия сессии.
@@ -147,7 +147,7 @@ namespace Bicycle_rent
 
         // *** End programmer edit section *** (TransportSession CustomMembers)
 
-        
+
         /// <summary>
         /// StartDate.
         /// </summary>
