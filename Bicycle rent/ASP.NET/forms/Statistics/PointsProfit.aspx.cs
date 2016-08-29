@@ -9,6 +9,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using ICSSoft.STORMNET.Business;
+using ICSSoft.STORMNET.Web.AjaxControls;
 
 namespace Bicycle_rent
 {
@@ -19,6 +21,24 @@ namespace Bicycle_rent
             ctrlPoint.MasterTypeName = typeof(Point).AssemblyQualifiedName;
             ctrlPoint.MasterViewName = Point.Views.PointL.Name;
             ctrlPoint.PropertyToShow = "Address";
+        }
+
+        protected void btnCalcResult_Click(object sender, EventArgs e)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            if (ctrlFromDate.Value != null && ctrlUntilDate.Value != null && 
+                ctrlFromDate.Value < ctrlUntilDate.Value && ctrlPoint.SelectedMasterPK != "")
+            {
+                var point = new Point();
+                point.SetExistObjectPrimaryKey(ctrlPoint.SelectedMasterPK);
+                ds.LoadObject(point);
+                ctrlProfitLabel.Text =
+                    $"Выручка: {Statistics.GetPointProfit(ctrlFromDate.Value, ctrlUntilDate.Value, point)}";
+            }
+            else
+            {
+                WebMessageBox.Show("Выбраны не все данные.");
+            }
         }
     }
 }

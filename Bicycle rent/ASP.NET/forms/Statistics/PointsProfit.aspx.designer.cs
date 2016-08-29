@@ -49,6 +49,15 @@ namespace Bicycle_rent {
         protected global::ICSSoft.STORMNET.Web.AjaxControls.DatePicker ctrlUntilDate;
         
         /// <summary>
+        /// ctrlPointLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ctrlPointLabel;
+        
+        /// <summary>
         /// ctrlPoint control.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,23 @@ namespace Bicycle_rent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ICSSoft.STORMNET.Web.AjaxControls.MasterEditorAjaxLookUp ctrlPoint;
+        
+        /// <summary>
+        /// btnCalcResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCalcResult;
+        
+        /// <summary>
+        /// ctrlProfitLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ctrlProfitLabel;
     }
 }

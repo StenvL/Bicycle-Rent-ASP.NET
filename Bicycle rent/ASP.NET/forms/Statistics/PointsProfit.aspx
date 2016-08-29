@@ -5,12 +5,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="AddToHeadPlaceholder" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label CssClass="descLbl" ID="ctrlFromDateLabel" runat="server" Text="От" EnableViewState="False" />
-    <ac:DatePicker ID="ctrlFromDate" runat="server"/>
-    <asp:Label CssClass="descLbl" ID="ctrlUntilDateLabel" runat="server" Text="До" EnableViewState="False" />
-    <ac:DatePicker ID="ctrlUntilDate" runat="server"/>
+    <div class="descTxt">
+        <asp:Label CssClass="descLbl" ID="ctrlFromDateLabel" runat="server" Text="От" EnableViewState="False" />
+        <ac:DatePicker ID="ctrlFromDate" runat="server"/>
+        <asp:Label CssClass="descLbl" ID="ctrlUntilDateLabel" runat="server" Text="До" EnableViewState="False" />
+        <ac:DatePicker ID="ctrlUntilDate" runat="server"/>
+        <asp:Label CssClass="descLbl" ID="ctrlPointLabel" runat="server" Text="Точка" EnableViewState="False" />
+        <ac:MasterEditorAjaxLookUp ID="ctrlPoint" CssClass="descTxt" ShowInThickBox="True" Autocomplete="true" runat="server" />
+        <asp:Button runat="server" ID="btnCalcResult" Text="Рассчитать" OnClick="btnCalcResult_Click" />
 
-    <ac:MasterEditorAjaxLookUp ID="ctrlPoint" CssClass="descTxt" ShowInThickBox="True" Autocomplete="true" runat="server" />
+        <asp:Label CssClass="descLbl" ID="ctrlProfitLabel" runat="server" Text="" EnableViewState="False" />
+    </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder0" runat="server">
 </asp:Content>

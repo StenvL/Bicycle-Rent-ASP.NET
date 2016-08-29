@@ -22,7 +22,7 @@ namespace Bicycle_rent
         {
             if (ctrlFromDate.Value != null && ctrlUntilDate.Value != null && ctrlFromDate.Value < ctrlUntilDate.Value)
             {
-                var data = Statistics.RuinedBicycles(ctrlFromDate.Value, ctrlUntilDate.Value);
+                var data = Statistics.GetRuinedBicycles(ctrlFromDate.Value, ctrlUntilDate.Value);
                 ctrlDamagedBicyclesLabel.Text = $"Испорчено велосипедов: {data.Item1.ToString()}";
                 ctrlStolenBicyclesLabel.Text = $"Украдено велосипедов: {data.Item2.ToString()}";
             }
