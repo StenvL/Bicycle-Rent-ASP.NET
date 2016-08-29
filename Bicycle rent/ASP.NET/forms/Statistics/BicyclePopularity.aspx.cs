@@ -16,7 +16,9 @@ namespace Bicycle_rent
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblChildren.Text = $"Детский: {Statistics.RentsCount(BicycleType.Детский).ToString()}";
+            lblHighway.Text = $"Шоссейный {Statistics.RentsCount(BicycleType.Шоссейный).ToString()}";
+            lblMountain.Text = $"Горный: {Statistics.RentsCount(BicycleType.Горный).ToString()}";
         }
     }
 }

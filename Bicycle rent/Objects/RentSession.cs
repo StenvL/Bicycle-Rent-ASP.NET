@@ -50,7 +50,9 @@ namespace Bicycle_rent
             "EndPoint as \'Точка сдачи\'",
             "EmployeeGive as \'Выдал\'",
             "Bicycle as \'Велосипед\'",
-            "EmployeeTake as \'Принял\'"})]
+            "EmployeeTake as \'Принял\'",
+            "Bicycle.Type"}, Hidden = new string[] {
+            "Bicycle.Type"})]
     [MasterViewDefineAttribute("RentSessionE", "Client", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "FullName")]
     [MasterViewDefineAttribute("RentSessionE", "StartPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
     [MasterViewDefineAttribute("RentSessionE", "EndPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]

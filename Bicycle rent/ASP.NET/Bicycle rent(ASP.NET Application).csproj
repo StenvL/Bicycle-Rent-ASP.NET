@@ -304,6 +304,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="forms\Entities\ClientE.aspx" />
+    <Compile Include="addons\Statistics.cs" />
     <Compile Include="forms\Entities\ClientE.aspx.cs">
       <DependentUpon>ClientE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

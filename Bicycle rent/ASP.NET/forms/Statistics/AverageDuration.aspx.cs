@@ -34,19 +34,11 @@ namespace Bicycle_rent
                 bicycle.SetExistObjectPrimaryKey(ctrlBicycle.SelectedMasterPK);
                 ds.LoadObject(bicycle);
 
-                var sessions = ds.Query<RentSession>(RentSession.Views.RentSessionE.Name)
-                    .Where(item => item.Bicycle == bicycle);
-
-                if (sessions.Count() != 0)
-                {
-                    var counter = DateTime.MinValue;
-                    foreach (var session in sessions)
-                    {
-                        counter += (System.DateTime.Parse(session.FinishDate.ToString()) - session.StartDate);
-                    }
-
+                var averageTime = Statistics.GetAverageRentTime(bicycle);
+                if (averageTime != null)
+                { 
                     lblResult.Text =
-                        $"Средняя продолжительность проката: {new DateTime((counter.Ticks / sessions.Count())).ToLongTimeString() }.";
+                        $"Средняя продолжительность проката: {averageTime.Value.ToLongTimeString() }.";
                 }
                 else
                 {

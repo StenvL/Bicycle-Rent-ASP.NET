@@ -2,6 +2,7 @@
 <%@ Page Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AverageDuration.aspx.cs" Inherits="Bicycle_rent.AverageDuration" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="PageTitlePlaceholder" runat="server">
+    Средняя продолжительность проката
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="AddToHeadPlaceholder" runat="server">
@@ -12,10 +13,7 @@
         <asp:Label CssClass="descLbl" ID="ctrlBicycleLabel" runat="server" Text="Велосипед" EnableViewState="False" />
         <ac:MasterEditorAjaxLookUp ID="ctrlBicycle" CssClass="descTxt" ShowInThickBox="True" Autocomplete="true" runat="server" />
         <asp:Button runat="server" ID="btnCalcResult" Text="Рассчитать" OnClick="btnCalcResult_Click" />
-        <div>
-        <asp:Label CssClass="descLbl" ID="lblResult" runat="server" Text="" EnableViewState="False" />
-        </div>
-    </div>
+        <p><asp:Label CssClass="descLbl" ID="lblResult" runat="server" Text="" EnableViewState="False" /></p>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder0" runat="server">
