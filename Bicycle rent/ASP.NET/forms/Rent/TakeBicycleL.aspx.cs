@@ -40,7 +40,7 @@ namespace Bicycle_rent
             
             var ds = DataServiceProvider.DataService;
             var query = ds.Query<RentSession>(RentSession.Views.TakeBicycleL.Name)
-                .Where(item => item.State.Equals(SessionState.Открыта));
+                .Where(item => item.SessionState.Equals(SessionState.Открыта));
             WebObjectListView1.LimitFunction = LinqToLcs.GetLcs(
             query.Expression, RentSession.Views.TakeBicycleL).LimitFunction;
         }

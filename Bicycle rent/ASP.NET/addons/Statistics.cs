@@ -23,7 +23,7 @@ namespace Bicycle_rent
                 var counter = DateTime.MinValue;
                 foreach (var session in sessions)
                 {
-                    counter += (System.DateTime.Parse(session.FinishDate.ToString()) - session.StartDate);
+                    counter += (DateTime.Parse(session.FinishDate.ToString()) - session.StartDate);
                 }
 
                 return new DateTime((counter.Ticks / sessions.Count()));
@@ -39,6 +39,25 @@ namespace Bicycle_rent
             var ds = (SQLDataService)DataServiceProvider.DataService;
             return ds.Query<RentSession>(RentSession.Views.RentSessionE.Name)
                 .Count(item => item.Bicycle.Type.Equals(type));
+        }
+
+        public static Tuple<int, int> RuinedBicycles(DateTime dateFrom, DateTime dateUntil)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            var sessions = ds.Query<RentSession>(RentSession.Views.RentSessionE.Name);
+
+            int damagedBicycles = sessions.Count(item =>
+                item.FinalBicycleState.Equals(BicycleState.Неисправен) &&
+                item.StartDate >= dateFrom && 
+                item.FinishDate.Value <= dateUntil
+            );
+            int stolenBicycles = sessions.Count(item => 
+                item.FinalBicycleState.Equals(BicycleState.Украден) &&
+                item.StartDate >= dateFrom &&
+                item.FinishDate.Value <= dateUntil
+            );
+
+            return new Tuple<int, int>(damagedBicycles, stolenBicycles);
         }
     }
 }

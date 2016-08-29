@@ -16,7 +16,17 @@ namespace Bicycle_rent
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
 
+        protected void btnCalcResult_Click(object sender, EventArgs e)
+        {
+            if (ctrlFromDate.Value != null && ctrlUntilDate.Value != null && ctrlFromDate.Value < ctrlUntilDate.Value)
+            {
+                var data = Statistics.RuinedBicycles(ctrlFromDate.Value, ctrlUntilDate.Value);
+                ctrlDamagedBicyclesLabel.Text = $"Испорчено велосипедов: {data.Item1.ToString()}";
+                ctrlStolenBicyclesLabel.Text = $"Украдено велосипедов: {data.Item2.ToString()}";
+            }
+            else { ICSSoft.STORMNET.Web.AjaxControls.WebMessageBox.Show("Данные не заполнены или некорректны"); }
         }
     }
 }

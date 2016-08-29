@@ -44,13 +44,14 @@ namespace Bicycle_rent
             "FinishDate as \'Дата сдачи\'",
             "Cost as \'Стоимость\'",
             "Fine as \'Штраф\'",
-            "State as \'Статус\'",
+            "SessionState as \'Статус\'",
             "Client as \'Клиент\'",
             "StartPoint as \'Точка выдачи\'",
             "EndPoint as \'Точка сдачи\'",
             "EmployeeGive as \'Выдал\'",
             "Bicycle as \'Велосипед\'",
             "EmployeeTake as \'Принял\'",
+            "FinalBicycleState as \'Состояние велосипеда\'",
             "Bicycle.Type"}, Hidden = new string[] {
             "Bicycle.Type"})]
     [MasterViewDefineAttribute("RentSessionE", "Client", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "FullName")]
@@ -64,35 +65,37 @@ namespace Bicycle_rent
             "EmployeeGive.FullName as \'Выдал\'",
             "StartPoint.Address as \'Точка выдачи\'",
             "Client.DocData as \'Документ\'",
+            "SessionState as \'Статус\'",
             "StartDate as \'Дата выдачи\'",
             "FinishDate as \'Дата сдачи\'",
             "EmployeeTake.FullName as \'Принял\'",
             "EndPoint.Address as \'Точка сдачи\'",
             "Cost as \'Стоимость\'",
             "Fine as \'Штраф\'",
-            "State as \'Статус\'"})]
+            "FinalBicycleState as \'Состояние велосипеда\'"})]
     [View("TakeBicycleE", new string[] {
             "EmployeeTake as \'Принял\'",
             "EndPoint as \'Точка сдачи\'",
             "Fine as \'Штраф\'",
+            "FinalBicycleState as \'Состояние велосипеда\'",
             "StartDate",
             "FinishDate",
             "Cost",
-            "State",
             "Client",
             "StartPoint",
             "EmployeeGive",
             "Bicycle",
-            "Bicycle.CostPerMinute"}, Hidden=new string[] {
+            "Bicycle.CostPerMinute",
+            "SessionState"}, Hidden = new string[] {
             "StartDate",
             "FinishDate",
             "Cost",
-            "State",
             "Client",
             "StartPoint",
             "EmployeeGive",
             "Bicycle",
-            "Bicycle.CostPerMinute"})]
+            "Bicycle.CostPerMinute",
+            "SessionState"})]
     [MasterViewDefineAttribute("TakeBicycleE", "EmployeeTake", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "FullName")]
     [MasterViewDefineAttribute("TakeBicycleE", "EndPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
     [View("TakeBicycleL", new string[] {
@@ -100,37 +103,39 @@ namespace Bicycle_rent
             "Client.DocData as \'Клиент\'",
             "StartPoint.Address as \'Точка выдачи\'",
             "StartDate as \'Дата выдачи\'",
-            "State as \'Статус\'"})]
+            "SessionState as \'Статус\'"})]
     public class RentSession : ICSSoft.STORMNET.DataObject
     {
-        
+
         private System.DateTime fStartDate = System.DateTime.Now;
-        
-        private ICSSoft.STORMNET.UserDataTypes.NullableDateTime fFinishDate;
-        
+
+        private DateTime? fFinishDate;
+
         private double fCost;
-        
+
         private double fFine = 0D;
-        
-        private Bicycle_rent.SessionState fState;
-        
-        private Bicycle_rent.Client fClient;
-        
-        private Bicycle_rent.Point fStartPoint;
-        
-        private Bicycle_rent.Point fEndPoint;
-        
-        private Bicycle_rent.Employee fEmployeeGive;
-        
+
+        private Bicycle_rent.SessionState fSessionState;
+
+        private Bicycle_rent.BicycleState fFinalBicycleState;
+
         private Bicycle_rent.Bicycle fBicycle;
-        
+
         private Bicycle_rent.Employee fEmployeeTake;
-        
+
+        private Bicycle_rent.Client fClient;
+
+        private Bicycle_rent.Point fEndPoint;
+
+        private Bicycle_rent.Point fStartPoint;
+
+        private Bicycle_rent.Employee fEmployeeGive;
+
         // *** Start programmer edit section *** (RentSession CustomMembers)
 
         // *** End programmer edit section *** (RentSession CustomMembers)
 
-        
+
         /// <summary>
         /// StartDate.
         /// </summary>
@@ -162,21 +167,21 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.StartDate Set end)
             }
         }
-        
+
         /// <summary>
         /// FinishDate.
         /// </summary>
         // *** Start programmer edit section *** (RentSession.FinishDate CustomAttributes)
 
         // *** End programmer edit section *** (RentSession.FinishDate CustomAttributes)
-        public virtual ICSSoft.STORMNET.UserDataTypes.NullableDateTime FinishDate
+        public virtual DateTime? FinishDate
         {
             get
             {
                 // *** Start programmer edit section *** (RentSession.FinishDate Get start)
 
                 // *** End programmer edit section *** (RentSession.FinishDate Get start)
-                ICSSoft.STORMNET.UserDataTypes.NullableDateTime result = this.fFinishDate;
+                DateTime? result = this.fFinishDate;
                 // *** Start programmer edit section *** (RentSession.FinishDate Get end)
 
                 // *** End programmer edit section *** (RentSession.FinishDate Get end)
@@ -193,7 +198,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.FinishDate Set end)
             }
         }
-        
+
         /// <summary>
         /// Cost.
         /// </summary>
@@ -224,7 +229,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.Cost Set end)
             }
         }
-        
+
         /// <summary>
         /// Fine.
         /// </summary>
@@ -255,174 +260,69 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.Fine Set end)
             }
         }
-        
-        /// <summary>
-        /// State.
-        /// </summary>
-        // *** Start programmer edit section *** (RentSession.State CustomAttributes)
 
-        // *** End programmer edit section *** (RentSession.State CustomAttributes)
-        [NotNull()]
-        public virtual Bicycle_rent.SessionState State
+        /// <summary>
+        /// SessionState.
+        /// </summary>
+        // *** Start programmer edit section *** (RentSession.SessionState CustomAttributes)
+
+        // *** End programmer edit section *** (RentSession.SessionState CustomAttributes)
+        public virtual Bicycle_rent.SessionState SessionState
         {
             get
             {
-                // *** Start programmer edit section *** (RentSession.State Get start)
+                // *** Start programmer edit section *** (RentSession.SessionState Get start)
 
-                // *** End programmer edit section *** (RentSession.State Get start)
-                Bicycle_rent.SessionState result = this.fState;
-                // *** Start programmer edit section *** (RentSession.State Get end)
+                // *** End programmer edit section *** (RentSession.SessionState Get start)
+                Bicycle_rent.SessionState result = this.fSessionState;
+                // *** Start programmer edit section *** (RentSession.SessionState Get end)
 
-                // *** End programmer edit section *** (RentSession.State Get end)
+                // *** End programmer edit section *** (RentSession.SessionState Get end)
                 return result;
             }
             set
             {
-                // *** Start programmer edit section *** (RentSession.State Set start)
+                // *** Start programmer edit section *** (RentSession.SessionState Set start)
 
-                // *** End programmer edit section *** (RentSession.State Set start)
-                this.fState = value;
-                // *** Start programmer edit section *** (RentSession.State Set end)
+                // *** End programmer edit section *** (RentSession.SessionState Set start)
+                this.fSessionState = value;
+                // *** Start programmer edit section *** (RentSession.SessionState Set end)
 
-                // *** End programmer edit section *** (RentSession.State Set end)
+                // *** End programmer edit section *** (RentSession.SessionState Set end)
             }
         }
-        
-        /// <summary>
-        /// Rent session.
-        /// </summary>
-        // *** Start programmer edit section *** (RentSession.Client CustomAttributes)
 
-        // *** End programmer edit section *** (RentSession.Client CustomAttributes)
-        [PropertyStorage(new string[] {
-                "Client"})]
-        [NotNull()]
-        public virtual Bicycle_rent.Client Client
+        /// <summary>
+        /// FinalBicycleState.
+        /// </summary>
+        // *** Start programmer edit section *** (RentSession.FinalBicycleState CustomAttributes)
+
+        // *** End programmer edit section *** (RentSession.FinalBicycleState CustomAttributes)
+        public virtual Bicycle_rent.BicycleState FinalBicycleState
         {
             get
             {
-                // *** Start programmer edit section *** (RentSession.Client Get start)
+                // *** Start programmer edit section *** (RentSession.FinalBicycleState Get start)
 
-                // *** End programmer edit section *** (RentSession.Client Get start)
-                Bicycle_rent.Client result = this.fClient;
-                // *** Start programmer edit section *** (RentSession.Client Get end)
+                // *** End programmer edit section *** (RentSession.FinalBicycleState Get start)
+                Bicycle_rent.BicycleState result = this.fFinalBicycleState;
+                // *** Start programmer edit section *** (RentSession.FinalBicycleState Get end)
 
-                // *** End programmer edit section *** (RentSession.Client Get end)
+                // *** End programmer edit section *** (RentSession.FinalBicycleState Get end)
                 return result;
             }
             set
             {
-                // *** Start programmer edit section *** (RentSession.Client Set start)
+                // *** Start programmer edit section *** (RentSession.FinalBicycleState Set start)
 
-                // *** End programmer edit section *** (RentSession.Client Set start)
-                this.fClient = value;
-                // *** Start programmer edit section *** (RentSession.Client Set end)
+                // *** End programmer edit section *** (RentSession.FinalBicycleState Set start)
+                this.fFinalBicycleState = value;
+                // *** Start programmer edit section *** (RentSession.FinalBicycleState Set end)
 
-                // *** End programmer edit section *** (RentSession.Client Set end)
+                // *** End programmer edit section *** (RentSession.FinalBicycleState Set end)
             }
         }
-        
-        /// <summary>
-        /// Rent session.
-        /// </summary>
-        // *** Start programmer edit section *** (RentSession.StartPoint CustomAttributes)
 
-        // *** End programmer edit section *** (RentSession.StartPoint CustomAttributes)
-        [PropertyStorage(new string[] {
-                "StartPoint"})]
-        [NotNull()]
-        public virtual Bicycle_rent.Point StartPoint
-        {
-            get
-            {
-                // *** Start programmer edit section *** (RentSession.StartPoint Get start)
-
-                // *** End programmer edit section *** (RentSession.StartPoint Get start)
-                Bicycle_rent.Point result = this.fStartPoint;
-                // *** Start programmer edit section *** (RentSession.StartPoint Get end)
-
-                // *** End programmer edit section *** (RentSession.StartPoint Get end)
-                return result;
-            }
-            set
-            {
-                // *** Start programmer edit section *** (RentSession.StartPoint Set start)
-
-                // *** End programmer edit section *** (RentSession.StartPoint Set start)
-                this.fStartPoint = value;
-                // *** Start programmer edit section *** (RentSession.StartPoint Set end)
-
-                // *** End programmer edit section *** (RentSession.StartPoint Set end)
-            }
-        }
-        
-        /// <summary>
-        /// Rent session.
-        /// </summary>
-        // *** Start programmer edit section *** (RentSession.EndPoint CustomAttributes)
-
-        // *** End programmer edit section *** (RentSession.EndPoint CustomAttributes)
-        [PropertyStorage(new string[] {
-                "EndPoint"})]
-        public virtual Bicycle_rent.Point EndPoint
-        {
-            get
-            {
-                // *** Start programmer edit section *** (RentSession.EndPoint Get start)
-
-                // *** End programmer edit section *** (RentSession.EndPoint Get start)
-                Bicycle_rent.Point result = this.fEndPoint;
-                // *** Start programmer edit section *** (RentSession.EndPoint Get end)
-
-                // *** End programmer edit section *** (RentSession.EndPoint Get end)
-                return result;
-            }
-            set
-            {
-                // *** Start programmer edit section *** (RentSession.EndPoint Set start)
-
-                // *** End programmer edit section *** (RentSession.EndPoint Set start)
-                this.fEndPoint = value;
-                // *** Start programmer edit section *** (RentSession.EndPoint Set end)
-
-                // *** End programmer edit section *** (RentSession.EndPoint Set end)
-            }
-        }
-        
-        /// <summary>
-        /// Rent session.
-        /// </summary>
-        // *** Start programmer edit section *** (RentSession.EmployeeGive CustomAttributes)
-
-        // *** End programmer edit section *** (RentSession.EmployeeGive CustomAttributes)
-        [PropertyStorage(new string[] {
-                "EmployeeGive"})]
-        [NotNull()]
-        public virtual Bicycle_rent.Employee EmployeeGive
-        {
-            get
-            {
-                // *** Start programmer edit section *** (RentSession.EmployeeGive Get start)
-
-                // *** End programmer edit section *** (RentSession.EmployeeGive Get start)
-                Bicycle_rent.Employee result = this.fEmployeeGive;
-                // *** Start programmer edit section *** (RentSession.EmployeeGive Get end)
-
-                // *** End programmer edit section *** (RentSession.EmployeeGive Get end)
-                return result;
-            }
-            set
-            {
-                // *** Start programmer edit section *** (RentSession.EmployeeGive Set start)
-
-                // *** End programmer edit section *** (RentSession.EmployeeGive Set start)
-                this.fEmployeeGive = value;
-                // *** Start programmer edit section *** (RentSession.EmployeeGive Set end)
-
-                // *** End programmer edit section *** (RentSession.EmployeeGive Set end)
-            }
-        }
-        
         /// <summary>
         /// Rent session.
         /// </summary>
@@ -456,7 +356,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.Bicycle Set end)
             }
         }
-        
+
         /// <summary>
         /// Rent session.
         /// </summary>
@@ -490,6 +390,140 @@ namespace Bicycle_rent
             }
         }
 
+        /// <summary>
+        /// Rent session.
+        /// </summary>
+        // *** Start programmer edit section *** (RentSession.Client CustomAttributes)
+
+        // *** End programmer edit section *** (RentSession.Client CustomAttributes)
+        [PropertyStorage(new string[] {
+                "Client"})]
+        [NotNull()]
+        public virtual Bicycle_rent.Client Client
+        {
+            get
+            {
+                // *** Start programmer edit section *** (RentSession.Client Get start)
+
+                // *** End programmer edit section *** (RentSession.Client Get start)
+                Bicycle_rent.Client result = this.fClient;
+                // *** Start programmer edit section *** (RentSession.Client Get end)
+
+                // *** End programmer edit section *** (RentSession.Client Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (RentSession.Client Set start)
+
+                // *** End programmer edit section *** (RentSession.Client Set start)
+                this.fClient = value;
+                // *** Start programmer edit section *** (RentSession.Client Set end)
+
+                // *** End programmer edit section *** (RentSession.Client Set end)
+            }
+        }
+
+        /// <summary>
+        /// Rent session.
+        /// </summary>
+        // *** Start programmer edit section *** (RentSession.EndPoint CustomAttributes)
+
+        // *** End programmer edit section *** (RentSession.EndPoint CustomAttributes)
+        [PropertyStorage(new string[] {
+                "EndPoint"})]
+        public virtual Bicycle_rent.Point EndPoint
+        {
+            get
+            {
+                // *** Start programmer edit section *** (RentSession.EndPoint Get start)
+
+                // *** End programmer edit section *** (RentSession.EndPoint Get start)
+                Bicycle_rent.Point result = this.fEndPoint;
+                // *** Start programmer edit section *** (RentSession.EndPoint Get end)
+
+                // *** End programmer edit section *** (RentSession.EndPoint Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (RentSession.EndPoint Set start)
+
+                // *** End programmer edit section *** (RentSession.EndPoint Set start)
+                this.fEndPoint = value;
+                // *** Start programmer edit section *** (RentSession.EndPoint Set end)
+
+                // *** End programmer edit section *** (RentSession.EndPoint Set end)
+            }
+        }
+
+        /// <summary>
+        /// Rent session.
+        /// </summary>
+        // *** Start programmer edit section *** (RentSession.StartPoint CustomAttributes)
+
+        // *** End programmer edit section *** (RentSession.StartPoint CustomAttributes)
+        [PropertyStorage(new string[] {
+                "StartPoint"})]
+        [NotNull()]
+        public virtual Bicycle_rent.Point StartPoint
+        {
+            get
+            {
+                // *** Start programmer edit section *** (RentSession.StartPoint Get start)
+
+                // *** End programmer edit section *** (RentSession.StartPoint Get start)
+                Bicycle_rent.Point result = this.fStartPoint;
+                // *** Start programmer edit section *** (RentSession.StartPoint Get end)
+
+                // *** End programmer edit section *** (RentSession.StartPoint Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (RentSession.StartPoint Set start)
+
+                // *** End programmer edit section *** (RentSession.StartPoint Set start)
+                this.fStartPoint = value;
+                // *** Start programmer edit section *** (RentSession.StartPoint Set end)
+
+                // *** End programmer edit section *** (RentSession.StartPoint Set end)
+            }
+        }
+
+        /// <summary>
+        /// Rent session.
+        /// </summary>
+        // *** Start programmer edit section *** (RentSession.EmployeeGive CustomAttributes)
+
+        // *** End programmer edit section *** (RentSession.EmployeeGive CustomAttributes)
+        [PropertyStorage(new string[] {
+                "EmployeeGive"})]
+        [NotNull()]
+        public virtual Bicycle_rent.Employee EmployeeGive
+        {
+            get
+            {
+                // *** Start programmer edit section *** (RentSession.EmployeeGive Get start)
+
+                // *** End programmer edit section *** (RentSession.EmployeeGive Get start)
+                Bicycle_rent.Employee result = this.fEmployeeGive;
+                // *** Start programmer edit section *** (RentSession.EmployeeGive Get end)
+
+                // *** End programmer edit section *** (RentSession.EmployeeGive Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (RentSession.EmployeeGive Set start)
+
+                // *** End programmer edit section *** (RentSession.EmployeeGive Set start)
+                this.fEmployeeGive = value;
+                // *** Start programmer edit section *** (RentSession.EmployeeGive Set end)
+
+                // *** End programmer edit section *** (RentSession.EmployeeGive Set end)
+            }
+        }
 
         /// <summary>
         /// Обновляет состояние велосипедов после открытия сессии.
@@ -514,14 +548,15 @@ namespace Bicycle_rent
         {
             var ds = (SQLDataService)DataServiceProvider.DataService;
 
-            session.FinishDate = ICSSoft.STORMNET.UserDataTypes.NullableDateTime.Now;
-            session.Cost = System.Math.Round((System.DateTime.Parse(session.FinishDate.ToString()) - session.StartDate)
+            session.FinishDate = DateTime.Now;
+            session.Cost = System.Math.Round((session.FinishDate.Value - session.StartDate)
                 .TotalMinutes) * session.Bicycle.CostPerMinute;
-            session.State = SessionState.Закрыта; session.State = SessionState.Закрыта;
+            session.SessionState = SessionState.Закрыта;
 
             var bicycle = new Bicycle();
             bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
             ds.LoadObject(bicycle);
+            bicycle.State = session.FinalBicycleState;
             bicycle.CurPoint = session.EndPoint;
             bicycle.IsFree = true;
 

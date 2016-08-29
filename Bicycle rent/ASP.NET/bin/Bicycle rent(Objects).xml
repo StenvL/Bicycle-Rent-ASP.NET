@@ -430,17 +430,27 @@
             Fine.
             </summary>
         </member>
-        <member name="P:Bicycle_rent.RentSession.State">
+        <member name="P:Bicycle_rent.RentSession.SessionState">
             <summary>
-            State.
+            SessionState.
             </summary>
         </member>
-        <member name="P:Bicycle_rent.RentSession.Client">
+        <member name="P:Bicycle_rent.RentSession.FinalBicycleState">
+            <summary>
+            FinalBicycleState.
+            </summary>
+        </member>
+        <member name="P:Bicycle_rent.RentSession.Bicycle">
             <summary>
             Rent session.
             </summary>
         </member>
-        <member name="P:Bicycle_rent.RentSession.StartPoint">
+        <member name="P:Bicycle_rent.RentSession.EmployeeTake">
+            <summary>
+            Rent session.
+            </summary>
+        </member>
+        <member name="P:Bicycle_rent.RentSession.Client">
             <summary>
             Rent session.
             </summary>
@@ -450,17 +460,12 @@
             Rent session.
             </summary>
         </member>
+        <member name="P:Bicycle_rent.RentSession.StartPoint">
+            <summary>
+            Rent session.
+            </summary>
+        </member>
         <member name="P:Bicycle_rent.RentSession.EmployeeGive">
-            <summary>
-            Rent session.
-            </summary>
-        </member>
-        <member name="P:Bicycle_rent.RentSession.Bicycle">
-            <summary>
-            Rent session.
-            </summary>
-        </member>
-        <member name="P:Bicycle_rent.RentSession.EmployeeTake">
             <summary>
             Rent session.
             </summary>

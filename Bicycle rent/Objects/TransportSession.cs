@@ -91,9 +91,9 @@ namespace Bicycle_rent
     {
         
         private System.DateTime fStartDate = System.DateTime.Now;
-        
-        private ICSSoft.STORMNET.UserDataTypes.NullableDateTime fFinishDate;
-        
+
+        private DateTime? fFinishDate;
+
         private Bicycle_rent.SessionState fState;
         
         private Bicycle_rent.Car fCar;
@@ -149,14 +149,14 @@ namespace Bicycle_rent
         // *** Start programmer edit section *** (TransportSession.FinishDate CustomAttributes)
 
         // *** End programmer edit section *** (TransportSession.FinishDate CustomAttributes)
-        public virtual ICSSoft.STORMNET.UserDataTypes.NullableDateTime FinishDate
+        public virtual DateTime? FinishDate
         {
             get
             {
                 // *** Start programmer edit section *** (TransportSession.FinishDate Get start)
 
                 // *** End programmer edit section *** (TransportSession.FinishDate Get start)
-                ICSSoft.STORMNET.UserDataTypes.NullableDateTime result = this.fFinishDate;
+                DateTime? result = this.fFinishDate;
                 // *** Start programmer edit section *** (TransportSession.FinishDate Get end)
 
                 // *** End programmer edit section *** (TransportSession.FinishDate Get end)
@@ -399,7 +399,7 @@ namespace Bicycle_rent
         public static void CloseSession(TransportSession session)
         {
             var ds = (SQLDataService)DataServiceProvider.DataService;
-            session.FinishDate = ICSSoft.STORMNET.UserDataTypes.NullableDateTime.Now;
+            session.FinishDate = DateTime.Now;
             session.State = SessionState.Закрыта;
             ds.UpdateObject(session);
 

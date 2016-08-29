@@ -48,16 +48,13 @@ ErrorMessage="Не указано: StartDate" EnableClientScript="true" Validati
 
 </div>
 <div class="clearfix">
-  <asp:Label CssClass="descLbl" ID="ctrlStateLabel" runat="server" Text="Статус" EnableViewState="False">
+  <asp:Label CssClass="descLbl" ID="ctrlSessionStateLabel" runat="server" Text="Статус" EnableViewState="False">
 </asp:Label>
-<asp:DropDownList ID="ctrlState" CssClass="descTxt" runat="server">
+<asp:DropDownList ID="ctrlSessionState" CssClass="descTxt" runat="server">
 	<asp:ListItem>Открыта</asp:ListItem>
 <asp:ListItem>Закрыта</asp:ListItem>
 
 </asp:DropDownList>
-<asp:RequiredFieldValidator ID="ctrlStateValidator" runat="server" ControlToValidate="ctrlState"
-ErrorMessage="Не указано: State" EnableClientScript="true" ValidationGroup="savedoc">*</asp:RequiredFieldValidator>
-
 </div>
 <div class="clearfix">
   <asp:Label CssClass="descLbl" ID="ctrlClientLabel" runat="server" Text="Клиент" EnableViewState="False">
@@ -106,6 +103,16 @@ ErrorMessage="Не указано: Bicycle" EnableClientScript="true" Validation
 </asp:Label>
 <ac:MasterEditorAjaxLookUp ID="ctrlEmployeeTake" CssClass="descTxt" runat="server" ShowInThickBox="True" Autocomplete="true" />
 
+</div>
+<div class="clearfix">
+  <asp:Label CssClass="descLbl" ID="ctrlFinalBicycleStateLabel" runat="server" Text="Состояние велосипеда" EnableViewState="False">
+</asp:Label>
+<asp:DropDownList ID="ctrlFinalBicycleState" CssClass="descTxt" runat="server">
+	<asp:ListItem>Исправен</asp:ListItem>
+<asp:ListItem>Неисправен</asp:ListItem>
+<asp:ListItem>Украден</asp:ListItem>
+
+</asp:DropDownList>
 </div>
 <br/>
 
