@@ -26,5 +26,12 @@
       <siteMapNode title="Завершить транспортировку" description="" url="~/forms/Transport/FinishTransportL.aspx" />
       <siteMapNode title="Перевозки велосипедов" description="" url="~/forms/Transport/TransportSessionL.aspx" />
     </siteMapNode>
+    <siteMapNode title="Статистика" roles="*" xmlns="">
+      <siteMapNode title="Средняя продолжительность проката" description="" url="~/forms/Statistics/AverageDuration.aspx" />
+      <siteMapNode title="Популярность велосипедов по типам" description="" url="~/forms/Statistics/BicyclePopularity.aspx" />
+      <siteMapNode title="Сломанные и украденные велосипеды" description="" url="~/forms/Statistics/BrokenBicycles.aspx" />
+      <siteMapNode title="Прибыль по точкам" description="" url="~/forms/Statistics/PointsProfit.aspx" />
+      <siteMapNode title="Количество перевезенных велосипедов" description="" url="~/forms/Statistics/TransportedBicyclesCount.aspx" />
+    </siteMapNode>
   </siteMapNode>
 </siteMap>
