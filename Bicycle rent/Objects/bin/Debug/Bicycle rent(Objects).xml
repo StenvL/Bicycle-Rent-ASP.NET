@@ -69,6 +69,16 @@
             Transport session.
             </summary>
         </member>
+        <member name="M:Bicycle_rent.TransportSession.UpdateBicyclesAfterSessionOpen(ICSSoft.STORMNET.DataObject[])">
+            <summary>
+            Обновляет состояние велосипедов после открытия сессии.
+            </summary>
+        </member>
+        <member name="M:Bicycle_rent.TransportSession.CloseSession(Bicycle_rent.TransportSession)">
+            <summary>
+            Закрывает сессию.
+            </summary>
+        </member>
         <member name="P:Bicycle_rent.TransportSession.StartDate">
             <summary>
             StartDate.
@@ -84,7 +94,7 @@
             State.
             </summary>
         </member>
-        <member name="P:Bicycle_rent.TransportSession.Car">
+        <member name="P:Bicycle_rent.TransportSession.EndPoint">
             <summary>
             Transport session.
             </summary>
@@ -94,12 +104,12 @@
             Transport session.
             </summary>
         </member>
-        <member name="P:Bicycle_rent.TransportSession.Driver">
+        <member name="P:Bicycle_rent.TransportSession.Car">
             <summary>
             Transport session.
             </summary>
         </member>
-        <member name="P:Bicycle_rent.TransportSession.EndPoint">
+        <member name="P:Bicycle_rent.TransportSession.Driver">
             <summary>
             Transport session.
             </summary>
@@ -107,16 +117,6 @@
         <member name="P:Bicycle_rent.TransportSession.TransportSessionString">
             <summary>
             Transport session.
-            </summary>
-        </member>
-        <member name="M:Bicycle_rent.TransportSession.UpdateBicyclesAfterSessionOpen(ICSSoft.STORMNET.DataObject[])">
-            <summary>
-            Обновляет состояние велосипедов после открытия сессии.
-            </summary>
-        </member>
-        <member name="M:Bicycle_rent.TransportSession.CloseSession(Bicycle_rent.TransportSession)">
-            <summary>
-            Закрывает сессию.
             </summary>
         </member>
         <member name="T:Bicycle_rent.TransportSession.Views">
@@ -410,6 +410,16 @@
             Rent session.
             </summary>
         </member>
+        <member name="M:Bicycle_rent.RentSession.UpdateBicycleAfterSessionOpen(Bicycle_rent.RentSession)">
+            <summary>
+            Обновляет состояние велосипедов после открытия сессии.
+            </summary>
+        </member>
+        <member name="M:Bicycle_rent.RentSession.CloseSession(Bicycle_rent.RentSession)">
+            <summary>
+            Закрывает сессию.
+            </summary>
+        </member>
         <member name="P:Bicycle_rent.RentSession.StartDate">
             <summary>
             StartDate.
@@ -468,16 +478,6 @@
         <member name="P:Bicycle_rent.RentSession.EmployeeGive">
             <summary>
             Rent session.
-            </summary>
-        </member>
-        <member name="M:Bicycle_rent.RentSession.UpdateBicycleAfterSessionOpen(Bicycle_rent.RentSession)">
-            <summary>
-            Обновляет состояние велосипедов после открытия сессии.
-            </summary>
-        </member>
-        <member name="M:Bicycle_rent.RentSession.CloseSession(Bicycle_rent.RentSession)">
-            <summary>
-            Закрывает сессию.
             </summary>
         </member>
         <member name="T:Bicycle_rent.RentSession.Views">

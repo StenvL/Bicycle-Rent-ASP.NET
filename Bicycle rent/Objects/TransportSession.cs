@@ -13,11 +13,10 @@ namespace Bicycle_rent
     using System;
     using System.Xml;
     using ICSSoft.STORMNET;
-    using ICSSoft.STORMNET.Business;
-
-
+    
+    
     // *** Start programmer edit section *** (Using statements)
-
+    using ICSSoft.STORMNET.Business;
     // *** End programmer edit section *** (Using statements)
 
 
@@ -44,7 +43,7 @@ namespace Bicycle_rent
             "Car",
             "StartPoint",
             "Driver"})]
-    [AssociatedDetailViewAttribute("FinishTransportE", "TransportSessionString", "TransportSessionStringE", true, "", "Велосипеды", false, new string[] {
+    [AssociatedDetailViewAttribute("FinishTransportE", "TransportSessionString", "TransportSessionStringL", true, "", "Велосипеды", false, new string[] {
             ""})]
     [MasterViewDefineAttribute("FinishTransportE", "EndPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
     [View("FinishTransportL", new string[] {
@@ -91,22 +90,60 @@ namespace Bicycle_rent
     {
         
         private System.DateTime fStartDate = System.DateTime.Now;
-
+        
         private DateTime? fFinishDate;
-
+        
         private Bicycle_rent.SessionState fState;
         
-        private Bicycle_rent.Car fCar;
+        private Bicycle_rent.Point fEndPoint;
         
         private Bicycle_rent.Point fStartPoint;
         
-        private Bicycle_rent.Employee fDriver;
+        private Bicycle_rent.Car fCar;
         
-        private Bicycle_rent.Point fEndPoint;
+        private Bicycle_rent.Employee fDriver;
         
         private Bicycle_rent.DetailArrayOfTransportSessionString fTransportSessionString;
         
         // *** Start programmer edit section *** (TransportSession CustomMembers)
+        /// <summary>
+        /// Обновляет состояние велосипедов после открытия сессии.
+        /// </summary>
+        public static void UpdateBicyclesAfterSessionOpen(DataObject[] details)
+        {
+            foreach (var d in details)
+            {
+                var ds = (SQLDataService)DataServiceProvider.DataService;
+                var bicycle = new Bicycle();
+                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
+                ds.LoadObject(bicycle);
+                bicycle.CurPoint = null;
+                bicycle.IsFree = false;
+                ds.UpdateObject(bicycle);
+            }
+        }
+
+        /// <summary>
+        /// Закрывает сессию.
+        /// </summary>
+        public static void CloseSession(TransportSession session)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            session.FinishDate = DateTime.Now;
+            session.State = SessionState.Закрыта;
+            ds.UpdateObject(session);
+
+            var details = session.TransportSessionString.GetAllObjects();
+            foreach (var d in details)
+            {
+                var bicycle = new Bicycle();
+                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
+                ds.LoadObject(bicycle);
+                bicycle.CurPoint = session.EndPoint;
+                bicycle.IsFree = true;
+                ds.UpdateObject(bicycle);
+            }
+        }
 
         // *** End programmer edit section *** (TransportSession CustomMembers)
 
@@ -209,34 +246,33 @@ namespace Bicycle_rent
         /// <summary>
         /// Transport session.
         /// </summary>
-        // *** Start programmer edit section *** (TransportSession.Car CustomAttributes)
+        // *** Start programmer edit section *** (TransportSession.EndPoint CustomAttributes)
 
-        // *** End programmer edit section *** (TransportSession.Car CustomAttributes)
+        // *** End programmer edit section *** (TransportSession.EndPoint CustomAttributes)
         [PropertyStorage(new string[] {
-                "Car"})]
-        [NotNull()]
-        public virtual Bicycle_rent.Car Car
+                "EndPoint"})]
+        public virtual Bicycle_rent.Point EndPoint
         {
             get
             {
-                // *** Start programmer edit section *** (TransportSession.Car Get start)
+                // *** Start programmer edit section *** (TransportSession.EndPoint Get start)
 
-                // *** End programmer edit section *** (TransportSession.Car Get start)
-                Bicycle_rent.Car result = this.fCar;
-                // *** Start programmer edit section *** (TransportSession.Car Get end)
+                // *** End programmer edit section *** (TransportSession.EndPoint Get start)
+                Bicycle_rent.Point result = this.fEndPoint;
+                // *** Start programmer edit section *** (TransportSession.EndPoint Get end)
 
-                // *** End programmer edit section *** (TransportSession.Car Get end)
+                // *** End programmer edit section *** (TransportSession.EndPoint Get end)
                 return result;
             }
             set
             {
-                // *** Start programmer edit section *** (TransportSession.Car Set start)
+                // *** Start programmer edit section *** (TransportSession.EndPoint Set start)
 
-                // *** End programmer edit section *** (TransportSession.Car Set start)
-                this.fCar = value;
-                // *** Start programmer edit section *** (TransportSession.Car Set end)
+                // *** End programmer edit section *** (TransportSession.EndPoint Set start)
+                this.fEndPoint = value;
+                // *** Start programmer edit section *** (TransportSession.EndPoint Set end)
 
-                // *** End programmer edit section *** (TransportSession.Car Set end)
+                // *** End programmer edit section *** (TransportSession.EndPoint Set end)
             }
         }
         
@@ -277,6 +313,40 @@ namespace Bicycle_rent
         /// <summary>
         /// Transport session.
         /// </summary>
+        // *** Start programmer edit section *** (TransportSession.Car CustomAttributes)
+
+        // *** End programmer edit section *** (TransportSession.Car CustomAttributes)
+        [PropertyStorage(new string[] {
+                "Car"})]
+        [NotNull()]
+        public virtual Bicycle_rent.Car Car
+        {
+            get
+            {
+                // *** Start programmer edit section *** (TransportSession.Car Get start)
+
+                // *** End programmer edit section *** (TransportSession.Car Get start)
+                Bicycle_rent.Car result = this.fCar;
+                // *** Start programmer edit section *** (TransportSession.Car Get end)
+
+                // *** End programmer edit section *** (TransportSession.Car Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (TransportSession.Car Set start)
+
+                // *** End programmer edit section *** (TransportSession.Car Set start)
+                this.fCar = value;
+                // *** Start programmer edit section *** (TransportSession.Car Set end)
+
+                // *** End programmer edit section *** (TransportSession.Car Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Transport session.
+        /// </summary>
         // *** Start programmer edit section *** (TransportSession.Driver CustomAttributes)
 
         // *** End programmer edit section *** (TransportSession.Driver CustomAttributes)
@@ -305,39 +375,6 @@ namespace Bicycle_rent
                 // *** Start programmer edit section *** (TransportSession.Driver Set end)
 
                 // *** End programmer edit section *** (TransportSession.Driver Set end)
-            }
-        }
-        
-        /// <summary>
-        /// Transport session.
-        /// </summary>
-        // *** Start programmer edit section *** (TransportSession.EndPoint CustomAttributes)
-
-        // *** End programmer edit section *** (TransportSession.EndPoint CustomAttributes)
-        [PropertyStorage(new string[] {
-                "EndPoint"})]
-        public virtual Bicycle_rent.Point EndPoint
-        {
-            get
-            {
-                // *** Start programmer edit section *** (TransportSession.EndPoint Get start)
-
-                // *** End programmer edit section *** (TransportSession.EndPoint Get start)
-                Bicycle_rent.Point result = this.fEndPoint;
-                // *** Start programmer edit section *** (TransportSession.EndPoint Get end)
-
-                // *** End programmer edit section *** (TransportSession.EndPoint Get end)
-                return result;
-            }
-            set
-            {
-                // *** Start programmer edit section *** (TransportSession.EndPoint Set start)
-
-                // *** End programmer edit section *** (TransportSession.EndPoint Set start)
-                this.fEndPoint = value;
-                // *** Start programmer edit section *** (TransportSession.EndPoint Set end)
-
-                // *** End programmer edit section *** (TransportSession.EndPoint Set end)
             }
         }
         
@@ -375,45 +412,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (TransportSession.TransportSessionString Set end)
             }
         }
-
-        /// <summary>
-        /// Обновляет состояние велосипедов после открытия сессии.
-        /// </summary>
-        public static void UpdateBicyclesAfterSessionOpen(DataObject[] details)
-        {
-            foreach (var d in details)
-            {
-                var ds = (SQLDataService)DataServiceProvider.DataService;
-                var bicycle = new Bicycle();
-                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
-                ds.LoadObject(bicycle);
-                bicycle.CurPoint = null;
-                bicycle.IsFree = false;
-                ds.UpdateObject(bicycle);
-            }
-        }
-
-        /// <summary>
-        /// Закрывает сессию.
-        /// </summary>
-        public static void CloseSession(TransportSession session)
-        {
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-            session.FinishDate = DateTime.Now;
-            session.State = SessionState.Закрыта;
-            ds.UpdateObject(session);
-
-            var details = session.TransportSessionString.GetAllObjects();
-            foreach (var d in details)
-            {
-                var bicycle = new Bicycle();
-                bicycle.SetExistObjectPrimaryKey(((TransportSessionString)d).Bicycle.__PrimaryKey);
-                ds.LoadObject(bicycle);
-                bicycle.CurPoint = session.EndPoint;
-                bicycle.IsFree = true;
-                ds.UpdateObject(bicycle);
-            }
-        }
+        
         /// <summary>
         /// Class views container.
         /// </summary>

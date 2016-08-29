@@ -94,31 +94,22 @@ namespace Bicycle_rent {
         protected global::ICSSoft.STORMNET.Web.AjaxControls.DecimalTextBox ctrlFine;
         
         /// <summary>
-        /// ctrlStateLabel control.
+        /// ctrlSessionStateLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ctrlStateLabel;
+        protected global::System.Web.UI.WebControls.Label ctrlSessionStateLabel;
         
         /// <summary>
-        /// ctrlState control.
+        /// ctrlSessionState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ctrlState;
-        
-        /// <summary>
-        /// ctrlStateValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ctrlStateValidator;
+        protected global::System.Web.UI.WebControls.DropDownList ctrlSessionState;
         
         /// <summary>
         /// ctrlClientLabel control.
@@ -263,5 +254,23 @@ namespace Bicycle_rent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ICSSoft.STORMNET.Web.AjaxControls.MasterEditorAjaxLookUp ctrlEmployeeTake;
+        
+        /// <summary>
+        /// ctrlFinalBicycleStateLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ctrlFinalBicycleStateLabel;
+        
+        /// <summary>
+        /// ctrlFinalBicycleState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ctrlFinalBicycleState;
     }
 }

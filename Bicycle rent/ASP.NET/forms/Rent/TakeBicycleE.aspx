@@ -35,7 +35,6 @@
 </ac:DecimalTextBox>
 
 </div>
-
 <div class="clearfix">
   <asp:Label CssClass="descLbl" ID="ctrlFinalBicycleStateLabel" runat="server" Text="Состояние велосипеда" EnableViewState="False">
 </asp:Label>

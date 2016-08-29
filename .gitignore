@@ -1,0 +1,8 @@
+# packages
+/Bicycle\ rent/packages
+
+# compiled output
+/Bicycle\ rent/ASP.NET/bin
+/Bicycle\ rent/ASP.NET/obj
+/Bicycle\ rent/Objects/bin
+/Bicycle\ rent/Objects/obj

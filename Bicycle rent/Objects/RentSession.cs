@@ -13,11 +13,10 @@ namespace Bicycle_rent
     using System;
     using System.Xml;
     using ICSSoft.STORMNET;
-    using ICSSoft.STORMNET.Business;
-
-
+    
+    
     // *** Start programmer edit section *** (Using statements)
-
+    using ICSSoft.STORMNET.Business;
     // *** End programmer edit section *** (Using statements)
 
 
@@ -52,7 +51,7 @@ namespace Bicycle_rent
             "Bicycle as \'Велосипед\'",
             "EmployeeTake as \'Принял\'",
             "FinalBicycleState as \'Состояние велосипеда\'",
-            "Bicycle.Type"}, Hidden = new string[] {
+            "Bicycle.Type"}, Hidden=new string[] {
             "Bicycle.Type"})]
     [MasterViewDefineAttribute("RentSessionE", "Client", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "FullName")]
     [MasterViewDefineAttribute("RentSessionE", "StartPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
@@ -86,7 +85,7 @@ namespace Bicycle_rent
             "EmployeeGive",
             "Bicycle",
             "Bicycle.CostPerMinute",
-            "SessionState"}, Hidden = new string[] {
+            "SessionState"}, Hidden=new string[] {
             "StartDate",
             "FinishDate",
             "Cost",
@@ -106,36 +105,74 @@ namespace Bicycle_rent
             "SessionState as \'Статус\'"})]
     public class RentSession : ICSSoft.STORMNET.DataObject
     {
-
+        
         private System.DateTime fStartDate = System.DateTime.Now;
-
+        
         private DateTime? fFinishDate;
-
+        
         private double fCost;
-
+        
         private double fFine = 0D;
-
+        
         private Bicycle_rent.SessionState fSessionState;
-
+        
         private Bicycle_rent.BicycleState fFinalBicycleState;
-
+        
         private Bicycle_rent.Bicycle fBicycle;
-
+        
         private Bicycle_rent.Employee fEmployeeTake;
-
+        
         private Bicycle_rent.Client fClient;
-
+        
         private Bicycle_rent.Point fEndPoint;
-
+        
         private Bicycle_rent.Point fStartPoint;
-
+        
         private Bicycle_rent.Employee fEmployeeGive;
-
+        
         // *** Start programmer edit section *** (RentSession CustomMembers)
+        /// <summary>
+        /// Обновляет состояние велосипедов после открытия сессии.
+        /// </summary>
+        public static void UpdateBicycleAfterSessionOpen(RentSession session)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+
+            var bicycle = new Bicycle();
+            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
+            ds.LoadObject(bicycle);
+
+            bicycle.CurPoint = null;
+            bicycle.IsFree = false;
+            ds.UpdateObject(bicycle);
+        }
+
+        /// <summary>
+        /// Закрывает сессию.
+        /// </summary>
+        public static void CloseSession(RentSession session)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+
+            session.FinishDate = DateTime.Now;
+            session.Cost = System.Math.Round((session.FinishDate.Value - session.StartDate)
+                .TotalMinutes) * session.Bicycle.CostPerMinute;
+            session.SessionState = SessionState.Закрыта;
+
+            var bicycle = new Bicycle();
+            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
+            ds.LoadObject(bicycle);
+            bicycle.State = session.FinalBicycleState;
+            bicycle.CurPoint = session.EndPoint;
+            bicycle.IsFree = true;
+
+            var updObjs = new DataObject[] { session, bicycle };
+            ds.UpdateObjects(ref updObjs);
+        }
 
         // *** End programmer edit section *** (RentSession CustomMembers)
 
-
+        
         /// <summary>
         /// StartDate.
         /// </summary>
@@ -167,7 +204,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.StartDate Set end)
             }
         }
-
+        
         /// <summary>
         /// FinishDate.
         /// </summary>
@@ -198,7 +235,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.FinishDate Set end)
             }
         }
-
+        
         /// <summary>
         /// Cost.
         /// </summary>
@@ -229,7 +266,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.Cost Set end)
             }
         }
-
+        
         /// <summary>
         /// Fine.
         /// </summary>
@@ -260,7 +297,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.Fine Set end)
             }
         }
-
+        
         /// <summary>
         /// SessionState.
         /// </summary>
@@ -291,7 +328,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.SessionState Set end)
             }
         }
-
+        
         /// <summary>
         /// FinalBicycleState.
         /// </summary>
@@ -322,7 +359,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.FinalBicycleState Set end)
             }
         }
-
+        
         /// <summary>
         /// Rent session.
         /// </summary>
@@ -356,7 +393,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.Bicycle Set end)
             }
         }
-
+        
         /// <summary>
         /// Rent session.
         /// </summary>
@@ -389,7 +426,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.EmployeeTake Set end)
             }
         }
-
+        
         /// <summary>
         /// Rent session.
         /// </summary>
@@ -423,7 +460,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.Client Set end)
             }
         }
-
+        
         /// <summary>
         /// Rent session.
         /// </summary>
@@ -456,7 +493,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.EndPoint Set end)
             }
         }
-
+        
         /// <summary>
         /// Rent session.
         /// </summary>
@@ -490,7 +527,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.StartPoint Set end)
             }
         }
-
+        
         /// <summary>
         /// Rent session.
         /// </summary>
@@ -524,46 +561,7 @@ namespace Bicycle_rent
                 // *** End programmer edit section *** (RentSession.EmployeeGive Set end)
             }
         }
-
-        /// <summary>
-        /// Обновляет состояние велосипедов после открытия сессии.
-        /// </summary>
-        public static void UpdateBicycleAfterSessionOpen(RentSession session)
-        {
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-            
-            var bicycle = new Bicycle();
-            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
-            ds.LoadObject(bicycle);
-            
-            bicycle.CurPoint = null;
-            bicycle.IsFree = false;
-            ds.UpdateObject(bicycle);
-        }
-
-        /// <summary>
-        /// Закрывает сессию.
-        /// </summary>
-        public static void CloseSession(RentSession session)
-        {
-            var ds = (SQLDataService)DataServiceProvider.DataService;
-
-            session.FinishDate = DateTime.Now;
-            session.Cost = System.Math.Round((session.FinishDate.Value - session.StartDate)
-                .TotalMinutes) * session.Bicycle.CostPerMinute;
-            session.SessionState = SessionState.Закрыта;
-
-            var bicycle = new Bicycle();
-            bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
-            ds.LoadObject(bicycle);
-            bicycle.State = session.FinalBicycleState;
-            bicycle.CurPoint = session.EndPoint;
-            bicycle.IsFree = true;
-
-            var updObjs = new DataObject[] { session, bicycle };
-            ds.UpdateObjects(ref updObjs);
-        }
-
+        
         /// <summary>
         /// Class views container.
         /// </summary>
