@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using ICSSoft.STORMNET.Web.AjaxControls;
 
 namespace Bicycle_rent
 {
@@ -26,7 +27,10 @@ namespace Bicycle_rent
                 ctrlDamagedBicyclesLabel.Text = $"Испорчено велосипедов: {data.Item1.ToString()}";
                 ctrlStolenBicyclesLabel.Text = $"Украдено велосипедов: {data.Item2.ToString()}";
             }
-            else { ICSSoft.STORMNET.Web.AjaxControls.WebMessageBox.Show("Данные не заполнены или некорректны"); }
+            else
+            {
+                WebMessageBox.Show("Данные не заполнены или некорректны");
+            }
         }
     }
 }

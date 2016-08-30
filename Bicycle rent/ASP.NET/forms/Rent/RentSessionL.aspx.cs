@@ -30,6 +30,7 @@ namespace Bicycle_rent
         /// </summary>
         protected override void Preload()
         {
+            WebObjectListView1.Operations.New = false;
         }
 
         /// <summary>

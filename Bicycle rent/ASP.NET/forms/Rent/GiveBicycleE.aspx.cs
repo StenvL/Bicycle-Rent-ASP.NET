@@ -92,6 +92,7 @@ namespace Bicycle_rent
 
         protected override void SaveBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
+            this.DataObject.StartPoint = this.DataObject.Bicycle.CurPoint;
             base.SaveBtn_Click(sender, e);
             RentSession.UpdateBicycleAfterSessionOpen(this.DataObject);
             Response.Redirect("/");

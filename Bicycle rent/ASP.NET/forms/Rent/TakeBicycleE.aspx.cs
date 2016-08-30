@@ -86,8 +86,8 @@ namespace Bicycle_rent
 
         protected override void SaveBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
-            if (this.DataObject.EmployeeTake != null &&
-                this.DataObject.EndPoint != null)
+            if (this.DataObject.FinalBicycleState.Equals(BicycleState.Украден) ||
+                (this.DataObject.EmployeeTake != null && this.DataObject.EndPoint != null))
             {
                 RentSession.CloseSession(this.DataObject);
             }
@@ -98,8 +98,8 @@ namespace Bicycle_rent
         }
         protected override void SaveAndCloseBtn_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
-            if (this.DataObject.EmployeeTake != null &&
-                this.DataObject.EndPoint != null)
+            if (this.DataObject.FinalBicycleState.Equals(BicycleState.Украден) ||
+                (this.DataObject.EmployeeTake != null && this.DataObject.EndPoint != null))
             {
                 RentSession.CloseSession(this.DataObject);
                 Response.Redirect("/forms/Rent/TakeBicycleL.aspx");

@@ -32,12 +32,10 @@ namespace Bicycle_rent
     [View("GiveBicycleE", new string[] {
             "Bicycle as \'Велосипед\'",
             "Client as \'Клиент\'",
-            "EmployeeGive as \'Выдал\'",
-            "StartPoint as \'Точка выдачи\'"})]
+            "EmployeeGive as \'Выдал\'"})]
     [MasterViewDefineAttribute("GiveBicycleE", "Bicycle", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Number")]
     [MasterViewDefineAttribute("GiveBicycleE", "Client", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "FullName")]
     [MasterViewDefineAttribute("GiveBicycleE", "EmployeeGive", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "FullName")]
-    [MasterViewDefineAttribute("GiveBicycleE", "StartPoint", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Address")]
     [View("RentSessionE", new string[] {
             "StartDate as \'Дата выдачи\'",
             "FinishDate as \'Дата сдачи\'",
@@ -154,10 +152,21 @@ namespace Bicycle_rent
         {
             var ds = (SQLDataService)DataServiceProvider.DataService;
 
-            session.FinishDate = DateTime.Now;
-            session.Cost = System.Math.Round((session.FinishDate.Value - session.StartDate)
-                .TotalMinutes) * session.Bicycle.CostPerMinute;
-            session.SessionState = SessionState.Закрыта;
+            if (session.FinalBicycleState.Equals(BicycleState.Украден))
+            {
+                session.EmployeeTake = null;
+                session.EndPoint = null;
+                session.FinishDate = null;
+                session.Cost = 0;
+                session.SessionState = SessionState.Закрыта;
+            }
+            else
+            {
+                session.FinishDate = DateTime.Now;
+                session.Cost = System.Math.Round((session.FinishDate.Value - session.StartDate)
+                    .TotalMinutes) * session.Bicycle.CostPerMinute;
+                session.SessionState = SessionState.Закрыта;
+            }
 
             var bicycle = new Bicycle();
             bicycle.SetExistObjectPrimaryKey(session.Bicycle.__PrimaryKey);
