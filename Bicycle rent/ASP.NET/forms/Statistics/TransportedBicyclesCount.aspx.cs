@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using ICSSoft.STORMNET.Web.AjaxControls;
 
 namespace Bicycle_rent
 {
@@ -17,6 +18,19 @@ namespace Bicycle_rent
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnCalcResult_Click(object sender, EventArgs e)
+        {
+            if (ctrlFromDate.Value != null && ctrlUntilDate.Value != null && ctrlFromDate.Value < ctrlUntilDate.Value)
+            {
+                int transportedBicCount = Statistics.TransportedBicyclesCount(ctrlFromDate.Value, ctrlUntilDate.Value);
+                ctrlCountLabel.Text = $"Количество перевезенных велосипедов: {transportedBicCount}";
+            }
+            else
+            {
+                WebMessageBox.Show("Выбраны не все данные.");
+            }
         }
     }
 }

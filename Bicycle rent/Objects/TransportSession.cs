@@ -51,7 +51,9 @@ namespace Bicycle_rent
             "Driver.FullName as \'Водитель\'",
             "StartDate as \'Время выезда\'",
             "StartPoint.Address as \'Точка старта\'",
-            "State as \'Статус\'"})]
+            "State as \'Статус\'",
+            "FinishDate"}, Hidden=new string[] {
+            "FinishDate"})]
     [AssociatedDetailViewAttribute("FinishTransportL", "TransportSessionString", "TransportSessionStringL", true, "", "Велосипеды", true, new string[] {
             ""})]
     [View("StartTransportE", new string[] {
@@ -104,7 +106,7 @@ namespace Bicycle_rent
         private Bicycle_rent.Employee fDriver;
         
         private Bicycle_rent.DetailArrayOfTransportSessionString fTransportSessionString;
-
+        
         // *** Start programmer edit section *** (TransportSession CustomMembers)
         /// <summary>
         /// Обновляет состояние велосипедов после открытия сессии.
@@ -147,7 +149,7 @@ namespace Bicycle_rent
 
         // *** End programmer edit section *** (TransportSession CustomMembers)
 
-
+        
         /// <summary>
         /// StartDate.
         /// </summary>

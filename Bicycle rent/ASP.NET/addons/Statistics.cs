@@ -84,5 +84,16 @@ namespace Bicycle_rent
             }
             return profit;
         }
+
+        public static int TransportedBicyclesCount(DateTime dateFrom, DateTime dateUntil)
+        {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            var sessions = ds.Query<TransportSession>(TransportSession.Views.TransportSessionL.Name)
+                .Where(item =>
+                    item.State.Equals(SessionState.Закрыта) &&
+                    item.StartDate >= dateFrom &&
+                    item.FinishDate <= dateUntil).ToList();
+            return sessions.Sum(item => item.TransportSessionString.Count);
+        }
     }
 }

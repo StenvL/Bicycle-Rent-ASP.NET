@@ -5,6 +5,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="AddToHeadPlaceholder" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="descTxt">
+        <asp:Label CssClass="descLbl" ID="ctrlFromDateLabel" runat="server" Text="От" EnableViewState="False" />
+        <ac:DatePicker ID="ctrlFromDate" runat="server"/>
+        <asp:Label CssClass="descLbl" ID="ctrlUntilDateLabel" runat="server" Text="До" EnableViewState="False" />
+        <ac:DatePicker ID="ctrlUntilDate" runat="server"/>
+        <asp:Button runat="server" ID="btnCalcResult" Text="Рассчитать" OnClick="btnCalcResult_Click" />
+    </div>
+        <asp:Label CssClass="descLbl" ID="ctrlCountLabel" runat="server" Text="" EnableViewState="False" />
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder0" runat="server">
 </asp:Content>
