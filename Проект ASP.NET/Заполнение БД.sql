@@ -51,7 +51,7 @@ insert into Bicycle (primaryKey, Number, Model, CostPerMinute, Type, State, IsFr
 insert into Bicycle (primaryKey, Number, Model, CostPerMinute, Type, State, CurPoint, IsFree)
 	values(newid(), 2, 'Forward 1', 3, 'Горный', 'Исправен', @point2, 1);
 insert into Bicycle (primaryKey, Number, Model, CostPerMinute, Type, State, CurPoint, IsFree)
-	values(newid(), 3, 'Stels 2', 1.8, 'Шоссейный', 'Неисправен', @point1, 1);
+	values(newid(), 3, 'Stels 2', 1.8, 'Шоссейный', 'Исправен', @point1, 1);
 insert into Bicycle (primaryKey, Number, Model, CostPerMinute, Type, State, CurPoint, IsFree)
 	values(newid(), 4, 'Forward 2', 2.3, 'Шоссейный', 'Неисправен', @point2, 1);
 insert into Bicycle (primaryKey, Number, Model, CostPerMinute, Type, State, CurPoint, isFree)
@@ -63,24 +63,24 @@ declare @bicycle4 uniqueidentifier = (select primaryKey from Bicycle where Model
 declare @bicycle5 uniqueidentifier = (select primaryKey from Bicycle where Model = 'Школьник');
 
 -- Сессии проката.
-insert into RentSession (primaryKey, StartDate, FinishDate, Cost, Fine, [State], Client, StartPoint, EndPoint, EmployeeGive, EmployeeTake, Bicycle)
-	values (newid(), '21.08.2016 15:28', '21.08.2016 16:28', 132, 0, 'Закрыта', @client1, @point1, @point1, @emp2, @emp2, @bicycle1);
-insert into RentSession (primaryKey, StartDate, FinishDate, Cost, Fine, [State], Client, StartPoint, EndPoint, EmployeeGive, EmployeeTake, Bicycle)
-	values (newid(), '20.08.2016 12:15', '20.08.2016 13:01', 138, 0, 'Закрыта', @client2, @point2, @point2, @emp3, @emp3, @bicycle2);
-insert into RentSession (primaryKey, StartDate, FinishDate, Cost, Fine, [State], Client, StartPoint, EndPoint, EmployeeGive, EmployeeTake, Bicycle)
-	values (newid(), '20.08.2016 19:10', '20.08.2016 21:15', 225, 50, 'Закрыта', @client3, @point1, @point2, @emp2, @emp3, @bicycle3);
-insert into RentSession (primaryKey, StartDate, FinishDate, Cost, Fine, [State], Client, StartPoint, EndPoint, EmployeeGive, EmployeeTake, Bicycle)
-	values (newid(), '22.08.2016 10:12', '22.08.2016 13:00', 302.4, 0, 'Закрыта', @client4, @point2, @point1, @emp3, @emp2, @bicycle3);
-insert into RentSession (primaryKey, StartDate, [State], Client, StartPoint, EmployeeGive, Bicycle)
-	values (newid(), '23.08.2016 13:23', 'Открыта', @client1, @point1, @emp2, @bicycle1);
+insert into RentSession (primaryKey, StartDate, FinishDate, Cost, Fine, SessionState, FinalBicycleState, Client, StartPoint, EndPoint, EmployeeGive, EmployeeTake, Bicycle)
+	values (newid(), '08.21.2016 15:28', '08.21.2016 16:28', 132, 0, 'Закрыта', 'Исправен', @client1, @point1, @point1, @emp2, @emp2, @bicycle1);
+insert into RentSession (primaryKey, StartDate, FinishDate, Cost, Fine, SessionState, FinalBicycleState, Client, StartPoint, EndPoint, EmployeeGive, EmployeeTake, Bicycle)
+	values (newid(), '08.20.2016 12:15', '08.20.2016 13:01', 138, 0, 'Закрыта', 'Исправен', @client2, @point2, @point2, @emp3, @emp3, @bicycle2);
+insert into RentSession (primaryKey, StartDate, FinishDate, Cost, Fine, SessionState, FinalBicycleState, Client, StartPoint, EndPoint, EmployeeGive, EmployeeTake, Bicycle)
+	values (newid(), '08.20.2016 19:10', '08.20.2016 21:15', 225, 50, 'Закрыта', 'Исправен', @client3, @point1, @point2, @emp2, @emp3, @bicycle3);
+insert into RentSession (primaryKey, StartDate, FinishDate, Cost, Fine, SessionState, FinalBicycleState, Client, StartPoint, EndPoint, EmployeeGive, EmployeeTake, Bicycle)
+	values (newid(), '08.22.2016 10:12', '08.22.2016 13:00', 302.4, 0, 'Закрыта', 'Исправен', @client4, @point2, @point1, @emp3, @emp2, @bicycle3);
+insert into RentSession (primaryKey, StartDate, SessionState, Client, StartPoint, EmployeeGive, Bicycle)
+	values (newid(), '08.29.2016 12:23', 'Открыта', @client1, @point1, @emp2, @bicycle1);
 
 -- Сессии перевозок.
 insert into TransportSession (primaryKey, StartDate, FinishDate, Car, StartPoint, EndPoint, Driver, State)
-	values (newid(), '21.08.2016 15:28', '21.08.2016 16:28', @car1, @point1, @point2, @emp2, 'Закрыта');
+	values (newid(), '08.21.2016 15:28', '08.21.2016 16:28', @car1, @point1, @point2, @emp2, 'Закрыта');
 insert into TransportSession (primaryKey, StartDate, FinishDate, Car, StartPoint, EndPoint, Driver, State)
-	values (newid(), '25.08.2016 15:28', '25.08.2016 19:28', @car2, @point2, @point1, @emp2, 'Закрыта');
+	values (newid(), '08.25.2016 15:28', '08.25.2016 19:28', @car2, @point2, @point1, @emp2, 'Закрыта');
 insert into TransportSession (primaryKey, StartDate, Car, StartPoint, Driver, State)
-	values (newid(), '27.08.2016 14:12', @car1, @point1, @emp1, 'Открыта');
+	values (newid(), '08.27.2016 14:12', @car1, @point1, @emp1, 'Открыта');
 declare @transport1 uniqueidentifier = (select top 1 primaryKey from TransportSession where StartPoint = @point1);
 declare @transport2 uniqueidentifier = (select primaryKey from TransportSession where StartPoint = @point2);
 declare @transport3 uniqueidentifier = (select primaryKey from TransportSession where State = 'Открыта');
