@@ -9,7 +9,7 @@
       <siteMapNode title="Лог" url="~/flexberry/LogList" />
       <siteMapNode title="Версии сборок" url="~/flexberry/Version" />
     </siteMapNode>
-    <siteMapNode title="Работа с сущностями" roles="*" xmlns="">
+    <siteMapNode title="Работа с сущностями" roles="admin,Директор" xmlns="">
       <siteMapNode title="Клиенты" description="" url="~/forms/Entities/ClientL.aspx" />
       <siteMapNode title="Сотрудники" description="" url="~/forms/Entities/EmployeeL.aspx" />
       <siteMapNode title="Велосипеды" description="" url="~/forms/Entities/BicycleL.aspx" />
@@ -26,7 +26,7 @@
       <siteMapNode title="Завершить транспортировку" description="" url="~/forms/Transport/FinishTransportL.aspx" />
       <siteMapNode title="Перевозки велосипедов" description="" url="~/forms/Transport/TransportSessionL.aspx" />
     </siteMapNode>
-    <siteMapNode title="Статистика" roles="*" xmlns="">
+    <siteMapNode title="Статистика" roles="admin,Директор" xmlns="">
       <siteMapNode title="Средняя продолжительность проката" description="" url="~/forms/Statistics/AverageDuration.aspx" />
       <siteMapNode title="Популярность велосипедов по типам" description="" url="~/forms/Statistics/BicyclePopularity.aspx" />
       <siteMapNode title="Сломанные и украденные велосипеды" description="" url="~/forms/Statistics/BrokenBicycles.aspx" />

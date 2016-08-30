@@ -28,7 +28,7 @@ namespace Bicycle_rent
     // *** End programmer edit section *** (RentSession CustomAttributes)
     [AutoAltered()]
     [Caption("Сессия проката")]
-    [AccessType(ICSSoft.STORMNET.AccessType.none)]
+    [AccessType(ICSSoft.STORMNET.AccessType.@this)]
     [View("GiveBicycleE", new string[] {
             "Bicycle as \'Велосипед\'",
             "Client as \'Клиент\'",

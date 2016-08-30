@@ -28,7 +28,7 @@ namespace Bicycle_rent
     // *** End programmer edit section *** (TransportSession CustomAttributes)
     [AutoAltered()]
     [Caption("Сессия перевозки")]
-    [AccessType(ICSSoft.STORMNET.AccessType.none)]
+    [AccessType(ICSSoft.STORMNET.AccessType.@this)]
     [View("FinishTransportE", new string[] {
             "EndPoint as \'Точка финиша\'",
             "StartDate",

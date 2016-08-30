@@ -5,7 +5,8 @@ namespace Bicycle_rent
     using ICSSoft.STORMNET.Web.Controls;
 
     using Resources;
-
+    using ICSSoft.STORMNET.Business;
+    using ICSSoft.STORMNET.Security;
     public partial class RentSessionL : BaseListForm<RentSession>
     {
         /// <summary>
@@ -31,6 +32,21 @@ namespace Bicycle_rent
         protected override void Preload()
         {
             WebObjectListView1.Operations.New = false;
+            WebObjectListView1.Operations.NewByExampleInRow = false;
+
+            var sm = DataServiceProvider.DataService.SecurityManager;
+
+            if (!sm.AccessObjectCheck(typeof(RentSession), tTypeAccess.Delete, false))
+            {
+                WebObjectListView1.Operations.Delete = false;
+            }
+
+            if (!sm.AccessObjectCheck(typeof(RentSession), tTypeAccess.Update, false))
+            {
+                WebObjectListView1.Operations.EditInRow = false;
+                WebObjectListView1.Operations.EditOnClickInRow = false;
+            }
+
         }
 
         /// <summary>

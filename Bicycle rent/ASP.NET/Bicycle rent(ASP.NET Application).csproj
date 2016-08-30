@@ -1060,6 +1060,12 @@
     <Content Include="App_Themes\Smart\Theme.skin" />
     <Content Include="App_Themes\Smart\Web.config" />
     <Content Include="App_Themes\Smart\_VariablesBasic.less" />
+    <Content Include="forms\Entities\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="forms\Statistics\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config" />
     <Compile Include="forms\BaseEditForm.cs">
       <SubType>ASPXCodeBehind</SubType>
