@@ -35,15 +35,8 @@ namespace Bicycle_rent
                 ds.LoadObject(bicycle);
 
                 var averageTime = Statistics.GetAverageRentTime(bicycle);
-                if (averageTime != null)
-                { 
-                    lblResult.Text =
-                        $"Средняя продолжительность проката: {averageTime.Value.ToLongTimeString() }.";
-                }
-                else
-                {
-                    lblResult.Text = "Выбранный велосипед не брали на прокат.";
-                }
+                lblResult.Text =
+                    $"Средняя продолжительность проката: {averageTime.ToLongTimeString() }.";
             }
             else
             {

@@ -12,23 +12,20 @@ namespace Bicycle_rent
         /// <summary>
         /// Возвращает среднее время проката велосипеда.
         /// </summary>
-        public static DateTime? GetAverageRentTime(Bicycle bicycle)
+        public static DateTime GetAverageRentTime(Bicycle bicycle)
         {
             var ds = (SQLDataService)DataServiceProvider.DataService;
             var sessions = ds.Query<RentSession>(RentSession.Views.RentSessionE.Name)
-                .Where(item => item.Bicycle == bicycle);
-
-            if (sessions.Count() != 0)
+                .Where(item => item.Bicycle == bicycle && item.FinishDate != null).ToList();
+            if (sessions.Count != 0)
             {
-                var counter = DateTime.MinValue;
-                foreach (var session in sessions)
-                {
-                    counter += (DateTime.Parse(session.FinishDate.ToString()) - session.StartDate);
-                }
-
-                return new DateTime((counter.Ticks / sessions.Count()));
+                return new DateTime(sessions.Sum(item => 
+                    item.FinishDate.Value.Ticks - item.StartDate.Ticks) / sessions.Count);
             }
-            else return null;
+            else
+            {
+                return DateTime.MinValue;
+            }
         }
 
         /// <summary>
@@ -75,14 +72,9 @@ namespace Bicycle_rent
                     item.StartPoint == point && 
                     item.SessionState.Equals(SessionState.Закрыта) &&
                     item.StartDate >= dateFrom &&
-                    item.FinishDate <= dateUntil);
+                    item.FinishDate <= dateUntil).ToList();
 
-            double profit = 0;
-            foreach(var session in sessions)
-            {
-                profit += session.Cost + session.Fine;
-            }
-            return profit;
+            return sessions.Sum(item => item.Cost + item.Fine);
         }
 
         public static int TransportedBicyclesCount(DateTime dateFrom, DateTime dateUntil)

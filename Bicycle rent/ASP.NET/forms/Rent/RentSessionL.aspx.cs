@@ -7,6 +7,8 @@ namespace Bicycle_rent
     using Resources;
     using ICSSoft.STORMNET.Business;
     using ICSSoft.STORMNET.Security;
+    using ICSSoft.Services;
+    using NewPlatform.Flexberry.Security;
     public partial class RentSessionL : BaseListForm<RentSession>
     {
         /// <summary>
@@ -36,17 +38,17 @@ namespace Bicycle_rent
 
             var sm = DataServiceProvider.DataService.SecurityManager;
 
-            if (!sm.AccessObjectCheck(typeof(RentSession), tTypeAccess.Delete, false))
-            {
-                WebObjectListView1.Operations.Delete = false;
-            }
-
-            if (!sm.AccessObjectCheck(typeof(RentSession), tTypeAccess.Update, false))
+            var login = CurrentUserService.CurrentUser.Login;
+            if (new UserManager(DataServiceProvider.DataService, new Md5PasswordHasher())
+                .IsUserInRole(login, "Менеджер"))
             {
                 WebObjectListView1.Operations.EditInRow = false;
                 WebObjectListView1.Operations.EditOnClickInRow = false;
             }
-
+            if (!sm.AccessObjectCheck(typeof(RentSession), tTypeAccess.Delete, false))
+            {
+                WebObjectListView1.Operations.Delete = false;
+            }
         }
 
         /// <summary>
