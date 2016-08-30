@@ -1,5 +1,8 @@
-﻿using ICSSoft.STORMNET.Business;
+﻿using ICSSoft.STORMNET;
+using ICSSoft.STORMNET.Business;
 using ICSSoft.STORMNET.Business.LINQProvider;
+using ICSSoft.STORMNET.FunctionalLanguage;
+using ICSSoft.STORMNET.FunctionalLanguage.SQLWhere;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +36,22 @@ namespace Bicycle_rent
         /// </summary>
         public static int GetRentsCount(BicycleType type)
         {
+            var lcs = LoadingCustomizationStruct.GetSimpleStruct(typeof(RentSession), RentSession.Views.RentSessionE);
+            var ld = SQLWhereLanguageDef.LanguageDef;
+            var func = ld.GetFunction(
+                ld.funcEQ,
+                new VariableDef(
+                    ld.StringType,
+                    Information.ExtractPropertyPath<RentSession>(item => item.Bicycle.Type)
+                ),
+                EnumCaption.GetCaptionFor(type)
+            );
+            lcs.LimitFunction = func;
             var ds = (SQLDataService)DataServiceProvider.DataService;
-            return ds.Query<RentSession>(RentSession.Views.RentSessionE.Name)
-                .Count(item => item.Bicycle.Type.Equals(type));
+            return ds.LoadObjects(lcs).Length;
+
+            //return ds.Query<RentSession>(RentSession.Views.RentSessionE.Name)
+            //    .Count(item => item.Bicycle.Type.Equals(type));
         }
 
         /// <summary>
